@@ -1,4 +1,5 @@
 import org.assertj.core.api.Assertions;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,5 +57,10 @@ public class LogicTest {
     public void should_not_make_drink_when_not_enough_money_is_given() throws Exception {
         Assertions.assertThat(logic.makeDrink(Drink.Coffee, 0, 0.2))
                 .contains("Need " + String.valueOf(Drink.Coffee.getPrice() - 0.2));
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        logic = null;
     }
 }
