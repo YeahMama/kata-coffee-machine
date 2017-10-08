@@ -35,6 +35,6 @@ public class Logic {
             return parseToDrinkMakerProtocol(drink, nbOfSugars);
         }
 
-        return "";
+        return "Need " + String.valueOf(drink.getPrice() - amountOfMoneyGiven);
     }
 }

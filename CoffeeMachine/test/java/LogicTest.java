@@ -31,4 +31,10 @@ public class LogicTest {
         Assertions.assertThat(new Logic().makeDrink(Drink.Tea, 2, 0.4))
                 .contains(Drink.Tea.getCode() + ":2:0");
     }
+
+    @Test
+    public void should_not_make_drink_when_not_enough_money_is_given() throws Exception {
+        Assertions.assertThat(new Logic().makeDrink(Drink.Coffee, 0, 0.2))
+                .contains("Need " + String.valueOf(Drink.Coffee.getPrice() - 0.2));
+    }
 }
