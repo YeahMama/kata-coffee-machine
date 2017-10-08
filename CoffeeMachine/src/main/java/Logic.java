@@ -18,4 +18,14 @@ public class Logic {
     private boolean hasSugars(int nbOfSugars) {
         return nbOfSugars > 0;
     }
+
+    public String parseToCustomer(String commands) {
+        String[] commandsSplited = commands.split(":");
+
+        if(commandsSplited.length == 2) {
+            return commandsSplited[1];
+        }
+
+        return "";
+    }
 }

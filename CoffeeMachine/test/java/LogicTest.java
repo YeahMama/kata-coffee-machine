@@ -19,4 +19,10 @@ public class LogicTest {
         Assertions.assertThat(new Logic().parseToDrinkMakerProtocol(Drink.Coffee, 2))
                 .isEqualTo(Drink.Coffee.getCode() + ":2:0");
     }
+
+    @Test
+    public void should_have_correct_message_for_customer_to_see() throws Exception {
+        Assertions.assertThat(new Logic().parseToCustomer("M:This is what you ordered"))
+        .isEqualTo("This is what you ordered");
+    }
 }
