@@ -13,4 +13,10 @@ public class LogicTest {
         Assertions.assertThat(new Logic().parseToDrinkMakerProtocol("Chocolate", 0))
                 .isEqualTo("H::");
     }
+
+    @Test
+    public void should_have_correct_instruction_for_coffee_with_sugars() throws Exception {
+        Assertions.assertThat(new Logic().parseToDrinkMakerProtocol("Coffee", 2))
+                .isEqualTo("C:2:0");
+    }
 }

@@ -5,6 +5,8 @@ public class Logic {
             instructions += "T";
         } else if("Chocolate".equals(drink)) {
             instructions += "H";
+        } else if("Coffee".equals(drink)) {
+            instructions += "C";
         }
 
         if(nbOfSugars > 0) {
