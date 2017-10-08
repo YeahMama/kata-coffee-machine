@@ -1,6 +1,7 @@
 public enum Drink {
     Chocolate("H", 0.5),
     Coffee("C", 0.6),
+    Orange("O", 0.6),
     Tea("T", 0.4);
 
     private String code;

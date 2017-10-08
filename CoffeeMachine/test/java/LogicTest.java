@@ -29,6 +29,12 @@ public class LogicTest {
     }
 
     @Test
+    public void should_have_correct_instruction_for_orange_juice() throws Exception {
+        Assertions.assertThat(logic.parseToDrinkMakerProtocol(Drink.Orange, 0))
+                .isEqualTo(Drink.Orange.getCode() + "::");
+    }
+
+    @Test
     public void should_have_correct_message_for_customer_to_see() throws Exception {
         Assertions.assertThat(logic.parseToCustomer("M:This is what you ordered"))
         .isEqualTo("This is what you ordered");
