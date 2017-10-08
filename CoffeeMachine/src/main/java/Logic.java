@@ -1,5 +1,16 @@
 public class Logic {
     public final static String STICK = "0";
+    public final static String MESSAGE_CODE = "M";
+
+    public String parseToCustomer(String commandFromDrinkMaker) {
+        String[] commands = commandFromDrinkMaker.split(":");
+
+        if(commands.length == 2 && MESSAGE_CODE.equals(commands[0])) {
+            return commands[1];
+        }
+
+        return "";
+    }
 
     public String parseToDrinkMakerProtocol(Drink drink, int nbOfSugars) {
         return drink.getCode()
@@ -17,15 +28,5 @@ public class Logic {
 
     private boolean hasSugars(int nbOfSugars) {
         return nbOfSugars > 0;
-    }
-
-    public String parseToCustomer(String commands) {
-        String[] commandsSplited = commands.split(":");
-
-        if(commandsSplited.length == 2) {
-            return commandsSplited[1];
-        }
-
-        return "";
     }
 }
