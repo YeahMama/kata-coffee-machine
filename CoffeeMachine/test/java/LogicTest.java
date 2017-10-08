@@ -41,6 +41,12 @@ public class LogicTest {
     }
 
     @Test
+    public void should_have_no_message_when_command_does_not_exist() throws Exception {
+        Assertions.assertThat(logic.parseToCustomer("E::"))
+                .isEqualTo("");
+    }
+
+    @Test
     public void should_make_drink_when_enough_money_is_given() throws Exception {
         Assertions.assertThat(logic.makeDrink(Drink.Tea, 2, 0.4))
                 .contains(Drink.Tea.getCode() + ":2:0");
