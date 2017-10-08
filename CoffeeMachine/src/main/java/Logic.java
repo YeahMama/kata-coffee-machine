@@ -1,6 +1,6 @@
 public class Logic {
-    public final static String STICK = "0";
-    public final static String MESSAGE_CODE = "M";
+    private final static String STICK = "0";
+    private final static String MESSAGE_CODE = "M";
 
     public String makeDrink(Drink drink, int nbOfSugars, double amount) {
         if(hasEnoughMoneyGiven(drink, amount)) {
