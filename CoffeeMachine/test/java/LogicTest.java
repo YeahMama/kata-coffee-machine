@@ -37,7 +37,7 @@ public class LogicTest {
     @Test
     public void should_have_correct_message_for_customer_to_see() throws Exception {
         Assertions.assertThat(logic.parseToCustomer("M:This is what you ordered"))
-        .isEqualTo("This is what you ordered");
+                .isEqualTo("This is what you ordered");
     }
 
     @Test
