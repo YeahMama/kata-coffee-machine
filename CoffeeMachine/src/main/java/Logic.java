@@ -1,21 +1,21 @@
 public class Logic {
-    public String parseToDrinkMakerProtocol(String drink, int nbOfSugars) {
-        String instructions = "";
+    public final static String STICK = "0";
 
-        if(Drink.Tea.name().equals(drink)) {
-            instructions += Drink.Tea.getCode();
-        } else if(Drink.Chocolate.name().equals(drink)) {
-            instructions += Drink.Chocolate.getCode();
-        } else if(Drink.Coffee.name().equals(drink)) {
-            instructions += Drink.Coffee.getCode();
-        }
+    public String parseToDrinkMakerProtocol(Drink drink, int nbOfSugars) {
+        return drink.getCode()
+                + ":" + sugarCode(nbOfSugars)
+                + ":" + stickCode(nbOfSugars);
+    }
 
-        if(nbOfSugars > 0) {
-            instructions += ":" + String.valueOf(nbOfSugars) + ":0";
-        } else {
-            instructions += "::";
-        }
+    private String sugarCode(int nbOfSugars) {
+        return hasSugars(nbOfSugars)? String.valueOf(nbOfSugars) : "";
+    }
 
-        return instructions;
+    private String stickCode(int nbOfSugars) {
+        return hasSugars(nbOfSugars)? STICK : "";
+    }
+
+    private boolean hasSugars(int nbOfSugars) {
+        return nbOfSugars > 0;
     }
 }
