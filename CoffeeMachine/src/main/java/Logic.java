@@ -3,21 +3,33 @@ public class Logic {
     public final static String MESSAGE_CODE = "M";
 
     public String makeDrink(Drink drink, int nbOfSugars, double amount) {
-        if(amount >= drink.getPrice()) {
+        if(hasEnoughMoneyGiven(drink, amount)) {
             return parseToDrinkMakerProtocol(drink, nbOfSugars);
         }
 
+        return notEnoughtMoneyGivenMessage(drink, amount);
+    }
+
+    private boolean hasEnoughMoneyGiven(Drink drink, double amount) {
+        return amount >= drink.getPrice();
+    }
+
+    private String notEnoughtMoneyGivenMessage(Drink drink, double amount) {
         return "Need " + String.valueOf(drink.getPrice() - amount);
     }
 
     public String parseToCustomer(String commandFromDrinkMaker) {
         String[] commands = commandFromDrinkMaker.split(":");
 
-        if(commands.length == 2 && MESSAGE_CODE.equals(commands[0])) {
+        if(isMessageCommand(commands)) {
             return commands[1];
         }
 
         return "";
+    }
+
+    private boolean isMessageCommand(String[] commands) {
+        return commands.length == 2 && MESSAGE_CODE.equals(commands[0]);
     }
 
     public String parseToDrinkMakerProtocol(Drink drink, int nbOfSugars) {
