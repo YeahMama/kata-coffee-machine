@@ -1,12 +1,13 @@
 public class Logic {
     public String parseToDrinkMakerProtocol(String drink, int nbOfSugars) {
         String instructions = "";
-        if("Tea".equals(drink)) {
-            instructions += "T";
-        } else if("Chocolate".equals(drink)) {
-            instructions += "H";
-        } else if("Coffee".equals(drink)) {
-            instructions += "C";
+
+        if(Drink.Tea.name().equals(drink)) {
+            instructions += Drink.Tea.getCode();
+        } else if(Drink.Chocolate.name().equals(drink)) {
+            instructions += Drink.Chocolate.getCode();
+        } else if(Drink.Coffee.name().equals(drink)) {
+            instructions += Drink.Coffee.getCode();
         }
 
         if(nbOfSugars > 0) {
