@@ -25,4 +25,10 @@ public class LogicTest {
         Assertions.assertThat(new Logic().parseToCustomer("M:This is what you ordered"))
         .isEqualTo("This is what you ordered");
     }
+
+    @Test
+    public void should_make_drink_when_enough_money_is_given() throws Exception {
+        Assertions.assertThat(new Logic().makeDrink(Drink.Tea, 2, 0.4))
+                .contains(Drink.Tea.getCode() + ":2:0");
+    }
 }

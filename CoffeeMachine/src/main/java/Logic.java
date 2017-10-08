@@ -29,4 +29,12 @@ public class Logic {
     private boolean hasSugars(int nbOfSugars) {
         return nbOfSugars > 0;
     }
+
+    public String makeDrink(Drink drink, int nbOfSugars, double amountOfMoneyGiven) {
+        if(amountOfMoneyGiven >= drink.getPrice()) {
+            return parseToDrinkMakerProtocol(drink, nbOfSugars);
+        }
+
+        return "";
+    }
 }
