@@ -1,4 +1,4 @@
-public class Logic {
+public class DrinkTranslator {
     private final static String STICK = "0";
     private final static String MESSAGE_CODE = "M";
 
