@@ -42,21 +42,9 @@ public class DrinkTranslatorTest {
     }
 
     @Test
-    public void should_have_no_message_when_command_does_not_exist() throws Exception {
+    public void should_have_no_message_when_instruction_has_no_message_code() throws Exception {
         Assertions.assertThat(drinkTranslator.toCustomer("E::"))
                 .isEqualTo("");
-    }
-
-    @Test
-    public void should_make_drink_when_enough_money_is_given() throws Exception {
-        Assertions.assertThat(drinkTranslator.makeDrink(Drink.Tea, 2, 0.4))
-                .contains(Drink.Tea.getCode() + ":2:0");
-    }
-
-    @Test
-    public void should_not_make_drink_when_not_enough_money_is_given() throws Exception {
-        Assertions.assertThat(drinkTranslator.makeDrink(Drink.Coffee, 0, 0.2))
-                .contains("Need " + String.valueOf(Drink.Coffee.getPrice() - 0.2));
     }
 
     @After
