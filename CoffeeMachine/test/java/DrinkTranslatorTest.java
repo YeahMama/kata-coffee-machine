@@ -13,37 +13,37 @@ public class DrinkTranslatorTest {
 
     @Test
     public void should_have_correct_instruction_for_tea_with_sugar() throws Exception {
-        Assertions.assertThat(drinkTranslator.parseToDrinkMakerProtocol(Drink.Tea, 1))
+        Assertions.assertThat(drinkTranslator.toDrinkMaker(Drink.Tea, 1))
                 .isEqualTo(Drink.Tea.getCode() + ":1:0");
     }
 
     @Test
     public void should_have_correct_instruction_for_chocolate_without_sugar() throws Exception {
-        Assertions.assertThat(drinkTranslator.parseToDrinkMakerProtocol(Drink.Chocolate, 0))
+        Assertions.assertThat(drinkTranslator.toDrinkMaker(Drink.Chocolate, 0))
                 .isEqualTo(Drink.Chocolate.getCode() + "::");
     }
 
     @Test
     public void should_have_correct_instruction_for_coffee_with_sugars() throws Exception {
-        Assertions.assertThat(drinkTranslator.parseToDrinkMakerProtocol(Drink.Coffee, 2))
+        Assertions.assertThat(drinkTranslator.toDrinkMaker(Drink.Coffee, 2))
                 .isEqualTo(Drink.Coffee.getCode() + ":2:0");
     }
 
     @Test
     public void should_have_correct_instruction_for_orange_juice() throws Exception {
-        Assertions.assertThat(drinkTranslator.parseToDrinkMakerProtocol(Drink.Orange, 0))
+        Assertions.assertThat(drinkTranslator.toDrinkMaker(Drink.Orange, 0))
                 .isEqualTo(Drink.Orange.getCode() + "::");
     }
 
     @Test
     public void should_have_correct_message_for_customer_to_see() throws Exception {
-        Assertions.assertThat(drinkTranslator.parseToCustomer("M:This is what you ordered"))
+        Assertions.assertThat(drinkTranslator.toCustomer("M:This is what you ordered"))
                 .isEqualTo("This is what you ordered");
     }
 
     @Test
     public void should_have_no_message_when_command_does_not_exist() throws Exception {
-        Assertions.assertThat(drinkTranslator.parseToCustomer("E::"))
+        Assertions.assertThat(drinkTranslator.toCustomer("E::"))
                 .isEqualTo("");
     }
 

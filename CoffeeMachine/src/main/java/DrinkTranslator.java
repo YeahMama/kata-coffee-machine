@@ -4,7 +4,7 @@ public class DrinkTranslator {
 
     public String makeDrink(Drink drink, int nbOfSugars, double amount) {
         if(hasEnoughMoneyGiven(drink, amount)) {
-            return parseToDrinkMakerProtocol(drink, nbOfSugars);
+            return toDrinkMaker(drink, nbOfSugars);
         }
 
         return notEnoughtMoneyGivenMessage(drink, amount);
@@ -18,7 +18,7 @@ public class DrinkTranslator {
         return "Need " + String.valueOf(drink.getPrice() - amount);
     }
 
-    public String parseToCustomer(String commandFromDrinkMaker) {
+    public String toCustomer(String commandFromDrinkMaker) {
         String[] commands = commandFromDrinkMaker.split(":");
 
         if(isMessageCommand(commands)) {
@@ -32,7 +32,7 @@ public class DrinkTranslator {
         return commands.length == 2 && MESSAGE_CODE.equals(commands[0]);
     }
 
-    public String parseToDrinkMakerProtocol(Drink drink, int nbOfSugars) {
+    public String toDrinkMaker(Drink drink, int nbOfSugars) {
         return drink.getCode()
                 + ":" + sugarCode(nbOfSugars)
                 + ":" + stickCode(nbOfSugars);
