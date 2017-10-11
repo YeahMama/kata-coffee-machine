@@ -1,5 +1,5 @@
 public class DrinkTranslator {
-    private final static String STICK = "0";
+    private final static String STICK_CODE = "0";
     private final static String MESSAGE_CODE = "M";
 
     public String makeDrink(Drink drink, int nbOfSugars, double amount) {
@@ -18,18 +18,22 @@ public class DrinkTranslator {
         return "Need " + String.valueOf(drink.getPrice() - amount);
     }
 
-    public String toCustomer(String commandFromDrinkMaker) {
-        String[] commands = commandFromDrinkMaker.split(":");
+    public String toCustomer(String instructionsFromDrinkMaker) {
+        String[] instructions = instructionsFromDrinkMaker.split(":");
 
-        if(isMessageCommand(commands)) {
-            return commands[1];
+        if(isMessageInstructions(instructions)) {
+            return displayMessage(instructions[1]);
         }
 
         return "";
     }
 
-    private boolean isMessageCommand(String[] commands) {
-        return commands.length == 2 && MESSAGE_CODE.equals(commands[0]);
+    private String displayMessage(String instruction) {
+        return instruction;
+    }
+
+    private boolean isMessageInstructions(String[] instructions) {
+        return (instructions.length == 2) && (MESSAGE_CODE.equals(instructions[0]));
     }
 
     public String toDrinkMaker(Drink drink, int nbOfSugars) {
@@ -43,7 +47,7 @@ public class DrinkTranslator {
     }
 
     private String stickCode(int nbOfSugars) {
-        return hasSugars(nbOfSugars)? STICK : "";
+        return hasSugars(nbOfSugars)? STICK_CODE : "";
     }
 
     private boolean hasSugars(int nbOfSugars) {
