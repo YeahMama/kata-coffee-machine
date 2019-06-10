@@ -31,6 +31,20 @@ public class TennisGameTest {
         assertThat(tennisGame.isFedererWinPoint(1)).isFalse();
     }
 
+    @Test
+    public void should_game_over_when_federer_wins_the_game() {
+        tennisGame.setFedererScore(4);
+
+        assertThat(tennisGame.isTennisGameOver()).isTrue();
+    }
+
+    @Test
+    public void should_game_over_when_nadal_wins_the_game() {
+        tennisGame.setNadalScore(4);
+
+        assertThat(tennisGame.isTennisGameOver()).isTrue();
+    }
+
     private void initTennisGameScore() {
         tennisGameScore.init();
         tennisGameScore.addPoint(0, 1, "Nadal");

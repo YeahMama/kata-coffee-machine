@@ -48,8 +48,23 @@ class TennisGame {
         return randResult % 2 == 0;
     }
 
-    private boolean isTennisGameOver() {
+    boolean isTennisGameOver() {
         return this.federerScore == 4 || this.nadalScore == 4;
     }
 
+    public int getFedererScore() {
+        return federerScore;
+    }
+
+    public void setFedererScore(int federerScore) {
+        this.federerScore = federerScore;
+    }
+
+    public int getNadalScore() {
+        return nadalScore;
+    }
+
+    public void setNadalScore(int nadalScore) {
+        this.nadalScore = nadalScore;
+    }
 }
