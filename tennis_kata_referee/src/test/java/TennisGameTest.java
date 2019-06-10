@@ -23,26 +23,50 @@ public class TennisGameTest {
 
     @Test
     public void should_federer_wins_point_when_it_has_an_even_number() {
-        assertThat(tennisGame.isFedererWinPoint(2)).isTrue();
+        // Arrange
+        int randResult = 2;
+
+        // Act
+        boolean federerWinPoint = tennisGame.isFedererWinPoint(randResult);
+
+        // Assert
+        assertThat(federerWinPoint).isTrue();
     }
 
     @Test
     public void should_nadal_wins_point_when_it_has_an_odd_number() {
-        assertThat(tennisGame.isFedererWinPoint(1)).isFalse();
+        // Arrange
+        int randResult = 1;
+
+        // Act
+        boolean federerWinPoint = tennisGame.isFedererWinPoint(randResult);
+
+        // Assert
+        assertThat(federerWinPoint).isFalse();
     }
 
     @Test
     public void should_game_over_when_federer_wins_the_game() {
+        // Arrange
         tennisGame.setFedererScore(4);
 
-        assertThat(tennisGame.isTennisGameOver()).isTrue();
+        // Act
+        boolean tennisGameOver = tennisGame.isTennisGameOver();
+
+        // Assert
+        assertThat(tennisGameOver).isTrue();
     }
 
     @Test
     public void should_game_over_when_nadal_wins_the_game() {
+        // Arrange
         tennisGame.setNadalScore(4);
 
-        assertThat(tennisGame.isTennisGameOver()).isTrue();
+        // Act
+        boolean tennisGameOver = tennisGame.isTennisGameOver();
+
+        // Assert
+        assertThat(tennisGameOver).isTrue();
     }
 
     private void initTennisGameScore() {
