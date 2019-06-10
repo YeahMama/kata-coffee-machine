@@ -2,9 +2,6 @@ import java.util.ArrayList;
 
 class TennisGame {
 
-    private static final String FEDERER_PLAYER = "Federer";
-    private static final String NADAL_PLAYER = "Nadal";
-
     private int federerScore;
     private int nadalScore;
 
@@ -16,37 +13,38 @@ class TennisGame {
         this.gameScore = new ArrayList<>();
     }
 
-    String play() {
+    void play() {
         System.out.println("Match : Federer - Nadal");
+        gameScore.add(new TennisScore("0", "0", "Start the game"));
 
         int playResult;
-        String winnerPoint;
-        while (this.federerScore != 4 && this.nadalScore != 4) {
+        String winner = "No winner";
+
+        while (! isTennisGameOver()) {
             playResult = getRandPlayResult();
 
             if (isFedererWinPoint(playResult)) {
                 this.federerScore += 1;
-                winnerPoint = "Federer";
+                winner = "Federer";
             } else {
                 this.nadalScore += 1;
-                winnerPoint = "Nadal";
+                winner = "Nadal";
             }
 
-            gameScore.add(new TennisScore(convertToTennisScore(this.federerScore), convertToTennisScore(this.nadalScore), winnerPoint));
-
-            if (this.federerScore == 4 || this.nadalScore == 4) {
-                System.out.println("Game set");
+            if (isTennisGameOver()) {
+                gameScore.add(new TennisScore("0", "0", winner));
             } else {
-                System.out.println(convertToTennisScore(this.federerScore) + " - " + convertToTennisScore(this.nadalScore));
+                gameScore.add(new TennisScore(convertToTennisScore(this.federerScore), convertToTennisScore(this.nadalScore), winner));
             }
 
         }
 
         System.out.println(this.gameScore.toString());
+        System.out.println(winner + " win the game");
+    }
 
-        return isFedererWinGame()
-                ? FEDERER_PLAYER
-                : NADAL_PLAYER;
+    private boolean isTennisGameOver() {
+        return this.federerScore == 4 || this.nadalScore == 4;
     }
 
     private int getRandPlayResult() {
@@ -55,10 +53,6 @@ class TennisGame {
 
     private boolean isFedererWinPoint(int randResult) {
         return randResult % 2 == 0;
-    }
-
-    private boolean isFedererWinGame() {
-        return this.federerScore == 4;
     }
 
     private String convertToTennisScore(int score) {
