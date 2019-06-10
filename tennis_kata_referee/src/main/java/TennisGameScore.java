@@ -29,20 +29,22 @@ class TennisGameScore {
         this.gameScoreWinnerRow.add("");
     }
 
-    void addWinnerPoint(String winnerPoint) {
-        this.gameScoreHeader.add(winnerPoint + " wins 1 point");
-    }
-
     void addGameOver(String winner) {
+        this.addWinnerPoint(winner);
         this.gameScoreFedererRow.add("0");
         this.gameScoreNadalRow.add("0");
         this.gameScoreWinnerRow.add(winner + " wins the game");
     }
 
-    void addPoint(int federerScore, int nadalScore) {
+    void addPoint(int federerScore, int nadalScore, String winnerPoint) {
+        this.addWinnerPoint(winnerPoint);
         this.gameScoreFedererRow.add(toTennisScore(federerScore));
         this.gameScoreNadalRow.add(toTennisScore(nadalScore));
         this.gameScoreWinnerRow.add("");
+    }
+
+    private void addWinnerPoint(String winnerPoint) {
+        this.gameScoreHeader.add(winnerPoint + " wins 1 point");
     }
 
     private String toTennisScore(int score) {

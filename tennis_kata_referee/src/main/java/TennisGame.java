@@ -30,28 +30,26 @@ class TennisGame {
                 winner = "Nadal";
             }
 
-            this.tennisGameScore.addWinnerPoint(winner);
-
             if (isTennisGameOver()) {
                 this.tennisGameScore.addGameOver(winner);
             } else {
-                this.tennisGameScore.addPoint(this.federerScore, this.nadalScore);
+                this.tennisGameScore.addPoint(this.federerScore, this.nadalScore, winner);
             }
         }
 
         this.tennisGameScore.displayGameScore();
     }
 
-    private boolean isTennisGameOver() {
-        return this.federerScore == 4 || this.nadalScore == 4;
-    }
-
     private int getRandPlayResult() {
         return (int) Math.floor(Math.random() * 1001);
     }
 
-    private boolean isFedererWinPoint(int randResult) {
+    boolean isFedererWinPoint(int randResult) {
         return randResult % 2 == 0;
+    }
+
+    private boolean isTennisGameOver() {
+        return this.federerScore == 4 || this.nadalScore == 4;
     }
 
 }
