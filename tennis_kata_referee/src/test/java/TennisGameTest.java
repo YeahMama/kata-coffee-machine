@@ -26,6 +26,11 @@ public class TennisGameTest {
         assertThat(tennisGame.isFedererWinPoint(2)).isTrue();
     }
 
+    @Test
+    public void should_nadal_wins_point_when_it_has_an_odd_number() {
+        assertThat(tennisGame.isFedererWinPoint(1)).isFalse();
+    }
+
     private void initTennisGameScore() {
         tennisGameScore.init();
         tennisGameScore.addPoint(0, 1, "Nadal");
