@@ -27,7 +27,7 @@ public class TennisGameScoreTest {
         tennisGameScore.addPoint();
 
         // Act
-        boolean tennisGameOver = tennisGameScore.isTennisGameOver();
+        boolean tennisGameOver = tennisGameScore.isOver();
 
         // Assert
         assertThat(tennisGameOver).isTrue();
@@ -49,7 +49,7 @@ public class TennisGameScoreTest {
         tennisGameScore.addPoint();
 
         // Act
-        boolean tennisGameOver = tennisGameScore.isTennisGameOver();
+        boolean tennisGameOver = tennisGameScore.isOver();
 
         // Assert
         assertThat(tennisGameOver).isTrue();

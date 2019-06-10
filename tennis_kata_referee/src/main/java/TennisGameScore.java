@@ -92,8 +92,12 @@ class TennisGameScore {
         this.winner = "Nadal";
     }
 
-    boolean isTennisGameOver() {
+    boolean isOver() {
         return this.federerScore == 4 || this.nadalScore == 4;
+    }
+
+    boolean isNotOver() {
+        return (! isOver());
     }
 
 }

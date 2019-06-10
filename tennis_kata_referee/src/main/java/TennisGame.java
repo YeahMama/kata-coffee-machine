@@ -12,7 +12,7 @@ class TennisGame {
 
         int playResult;
 
-        while (!this.tennisGameScore.isTennisGameOver()) {
+        while (this.tennisGameScore.isNotOver()) {
             playResult = getRandPlayResult();
 
             if (isFedererWinPoint(playResult)) {
@@ -21,7 +21,7 @@ class TennisGame {
                 this.tennisGameScore.addPointNadal();
             }
 
-            if (this.tennisGameScore.isTennisGameOver()) {
+            if (this.tennisGameScore.isOver()) {
                 this.tennisGameScore.addGameOver();
             } else {
                 this.tennisGameScore.addPoint();
