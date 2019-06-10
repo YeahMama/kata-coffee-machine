@@ -3,12 +3,20 @@ import java.util.Arrays;
 
 class TennisGameScore {
 
+    private int federerScore;
+    private int nadalScore;
+
+    private String winner;
+
     private ArrayList<String> gameScoreHeader;
     private ArrayList<String> gameScoreFedererRow;
     private ArrayList<String> gameScoreNadalRow;
     private ArrayList<String> gameScoreWinnerRow;
 
     TennisGameScore() {
+        this.federerScore = 0;
+        this.nadalScore = 0;
+
         this.gameScoreHeader = new ArrayList<>();
         this.gameScoreFedererRow = new ArrayList<>();
         this.gameScoreNadalRow = new ArrayList<>();
@@ -29,22 +37,22 @@ class TennisGameScore {
         this.gameScoreWinnerRow.add("");
     }
 
-    void addGameOver(String winner) {
-        this.addWinnerPoint(winner);
+    void addGameOver() {
+        this.addWinnerPoint();
         this.gameScoreFedererRow.add("0");
         this.gameScoreNadalRow.add("0");
-        this.gameScoreWinnerRow.add(winner + " wins the game");
+        this.gameScoreWinnerRow.add(this.winner + " wins the game");
     }
 
-    void addPoint(int federerScore, int nadalScore, String winnerPoint) {
-        this.addWinnerPoint(winnerPoint);
-        this.gameScoreFedererRow.add(toTennisScore(federerScore));
-        this.gameScoreNadalRow.add(toTennisScore(nadalScore));
+    void addPoint() {
+        this.addWinnerPoint();
+        this.gameScoreFedererRow.add(toTennisScore(this.federerScore));
+        this.gameScoreNadalRow.add(toTennisScore(this.nadalScore));
         this.gameScoreWinnerRow.add("");
     }
 
-    private void addWinnerPoint(String winnerPoint) {
-        this.gameScoreHeader.add(winnerPoint + " wins 1 point");
+    private void addWinnerPoint() {
+        this.gameScoreHeader.add(this.winner + " wins 1 point");
     }
 
     private String toTennisScore(int score) {
@@ -72,6 +80,20 @@ class TennisGameScore {
 
     private String[] toArrayString(ArrayList<String> arrayList) {
         return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
+    }
+
+    void addPointFederer() {
+        this.federerScore += 1;
+        this.winner = "Federer";
+    }
+
+    void addPointNadal() {
+        this.nadalScore += 1;
+        this.winner = "Nadal";
+    }
+
+    boolean isTennisGameOver() {
+        return this.federerScore == 4 || this.nadalScore == 4;
     }
 
 }

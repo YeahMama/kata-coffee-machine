@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,11 +14,6 @@ public class TennisGameTest {
 
     @Mock
     private TennisGameScore tennisGameScore;
-
-    @Before
-    public void setUp() {
-        initTennisGameScore();
-    }
 
     @Test
     public void should_federer_wins_point_when_it_has_an_even_number() {
@@ -46,44 +40,12 @@ public class TennisGameTest {
     }
 
     @Test
-    public void should_game_over_when_federer_wins_the_game() {
-        // Arrange
-        tennisGame.setFedererScore(4);
-
-        // Act
-        boolean tennisGameOver = tennisGame.isTennisGameOver();
-
-        // Assert
-        assertThat(tennisGameOver).isTrue();
-    }
-
-    @Test
-    public void should_game_over_when_nadal_wins_the_game() {
-        // Arrange
-        tennisGame.setNadalScore(4);
-
-        // Act
-        boolean tennisGameOver = tennisGame.isTennisGameOver();
-
-        // Assert
-        assertThat(tennisGameOver).isTrue();
-    }
-
-    @Test
     public void should_give_random_play_result_when_it_gives_random_number_between_0_and_1000() {
         // Act
         int randPlayResult = tennisGame.getRandPlayResult();
 
         // Assert
         assertThat(randPlayResult).isBetween(0, 1000);
-    }
-
-    private void initTennisGameScore() {
-        tennisGameScore.init();
-        tennisGameScore.addPoint(0, 1, "Nadal");
-        tennisGameScore.addPoint(0, 2, "Nadal");
-        tennisGameScore.addPoint(0, 3, "Nadal");
-        tennisGameScore.addPoint(0, 4, "Nadal");
     }
 
 }
