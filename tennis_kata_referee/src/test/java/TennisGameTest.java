@@ -79,7 +79,7 @@ public class TennisGameTest {
     public void should_update_score_when_tennis_game_is_over() {
         // Arrange
         Mockito.when(tennisGameScore.isOver()).thenReturn(true);
-        Mockito.doNothing().when(tennisGameScore).addGameOver();
+        Mockito.doNothing().when(tennisGameScore).addGameOverCol();
 
         // Act
         tennisGame.updateGameScore();
@@ -89,7 +89,7 @@ public class TennisGameTest {
     public void should_update_score_when_a_player_wins_point() {
         // Arrange
         Mockito.when(tennisGameScore.isOver()).thenReturn(false);
-        Mockito.doNothing().when(tennisGameScore).addPoint();
+        Mockito.doNothing().when(tennisGameScore).addPointCol();
 
         // Act
         tennisGame.updateGameScore();

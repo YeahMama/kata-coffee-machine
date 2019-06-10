@@ -28,9 +28,9 @@ class TennisGame {
 
     void updateGameScore() {
         if (this.tennisGameScore.isOver()) {
-            this.tennisGameScore.addGameOver();
+            this.tennisGameScore.addGameOverCol();
         } else {
-            this.tennisGameScore.addPoint();
+            this.tennisGameScore.addPointCol();
         }
     }
 

@@ -15,16 +15,16 @@ public class TennisGameScoreTest {
     public void should_game_over_when_federer_wins_the_game() {
         // Arrange
         tennisGameScore.addPointFederer();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         tennisGameScore.addPointFederer();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         tennisGameScore.addPointFederer();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         tennisGameScore.addPointFederer();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         // Act
         boolean tennisGameOver = tennisGameScore.isOver();
@@ -37,16 +37,16 @@ public class TennisGameScoreTest {
     public void should_game_over_when_nadal_wins_the_game() {
         // Arrange
         tennisGameScore.addPointNadal();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         tennisGameScore.addPointNadal();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         tennisGameScore.addPointNadal();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         tennisGameScore.addPointNadal();
-        tennisGameScore.addPoint();
+        tennisGameScore.addPointCol();
 
         // Act
         boolean tennisGameOver = tennisGameScore.isOver();

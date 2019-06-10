@@ -37,14 +37,14 @@ class TennisGameScore {
         this.gameScoreWinnerRow.add("");
     }
 
-    void addGameOver() {
+    void addGameOverCol() {
         this.addWinnerPoint();
         this.gameScoreFedererRow.add("0");
         this.gameScoreNadalRow.add("0");
         this.gameScoreWinnerRow.add(this.winner + " wins the game");
     }
 
-    void addPoint() {
+    void addPointCol() {
         this.addWinnerPoint();
         this.gameScoreFedererRow.add(toTennisScore(this.federerScore));
         this.gameScoreNadalRow.add(toTennisScore(this.nadalScore));
@@ -100,11 +100,11 @@ class TennisGameScore {
         return (! isOver());
     }
 
-    public int getFedererScore() {
+    int getFedererScore() {
         return this.federerScore;
     }
 
-    public int getNadalScore() {
+    int getNadalScore() {
         return this.nadalScore;
     }
 
