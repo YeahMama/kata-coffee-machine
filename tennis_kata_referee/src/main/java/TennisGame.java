@@ -1,24 +1,43 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class TennisGame {
 
     private int federerScore;
     private int nadalScore;
 
-    private ArrayList<TennisScore> gameScore;
+    private ArrayList<String> gameScoreHeader;
+    private ArrayList<String> gameScoreFedererRow;
+    private ArrayList<String> gameScoreNadalRow;
+    private ArrayList<String> gameScoreWinnerRow;
 
     TennisGame() {
         this.federerScore = 0;
         this.nadalScore = 0;
-        this.gameScore = new ArrayList<>();
+
+        this.gameScoreHeader = new ArrayList<>();
+        this.gameScoreFedererRow = new ArrayList<>();
+        this.gameScoreNadalRow = new ArrayList<>();
+        this.gameScoreWinnerRow = new ArrayList<>();
     }
 
     void play() {
-        System.out.println("Match : Federer - Nadal");
-        gameScore.add(new TennisScore("0", "0", "Start the game"));
+        System.out.println("Game score");
+
+        this.gameScoreHeader.add("");
+        this.gameScoreHeader.add("Start the game");
+
+        this.gameScoreFedererRow.add("Federer");
+        this.gameScoreFedererRow.add("0");
+
+        this.gameScoreNadalRow.add("Nadal");
+        this.gameScoreNadalRow.add("0");
+
+        this.gameScoreWinnerRow.add("");
+        this.gameScoreWinnerRow.add("");
 
         int playResult;
-        String winner = "No winner";
+        String winner;
 
         while (! isTennisGameOver()) {
             playResult = getRandPlayResult();
@@ -31,20 +50,40 @@ class TennisGame {
                 winner = "Nadal";
             }
 
+            this.gameScoreHeader.add(winner + " wins 1 point");
+
             if (isTennisGameOver()) {
-                gameScore.add(new TennisScore("0", "0", winner));
+                this.gameScoreFedererRow.add("0");
+                this.gameScoreNadalRow.add("0");
+                this.gameScoreWinnerRow.add(winner + " wins the game");
             } else {
-                gameScore.add(new TennisScore(convertToTennisScore(this.federerScore), convertToTennisScore(this.nadalScore), winner));
+                this.gameScoreFedererRow.add(convertToTennisScore(this.federerScore));
+                this.gameScoreNadalRow.add(convertToTennisScore(this.nadalScore));
+                this.gameScoreWinnerRow.add("");
             }
 
         }
 
         displayGameScore();
-        System.out.println(winner + " wins the game");
     }
 
     private void displayGameScore() {
-        System.out.println(this.gameScore.toString());
+        TennisGameTable st = new TennisGameTable();
+
+        //st.setRightAlign(true);//if true then cell text is right aligned
+
+        String[] str = Arrays.copyOf(this.gameScoreHeader.toArray(), this.gameScoreHeader.toArray().length, String[].class);
+        String[] str2 = Arrays.copyOf(this.gameScoreFedererRow.toArray(), this.gameScoreFedererRow.toArray().length, String[].class);
+        String[] str3 = Arrays.copyOf(this.gameScoreNadalRow.toArray(), this.gameScoreNadalRow.toArray().length, String[].class);
+        String[] str4 = Arrays.copyOf(this.gameScoreWinnerRow.toArray(), this.gameScoreWinnerRow.toArray().length, String[].class);
+
+        st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
+        st.setHeaders(str);//optional - if not used then there will be no header and horizontal lines
+        st.addRow(str2);
+        st.addRow(str3);
+        st.addRow(str4);
+
+        st.print();
     }
 
     private boolean isTennisGameOver() {
