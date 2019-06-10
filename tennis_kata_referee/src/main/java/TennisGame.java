@@ -39,8 +39,12 @@ class TennisGame {
 
         }
 
-        System.out.println(this.gameScore.toString());
+        displayGameScore();
         System.out.println(winner + " win the game");
+    }
+
+    private void displayGameScore() {
+        System.out.println(this.gameScore.toString());
     }
 
     private boolean isTennisGameOver() {
