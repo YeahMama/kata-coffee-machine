@@ -10,26 +10,30 @@ class TennisGame {
         System.out.println("Game score");
         this.tennisGameScore.init();
 
-        int playResult;
-
         while (this.tennisGameScore.isNotOver()) {
-            playResult = getRandPlayResult();
-
-            if (isFedererWinPoint(playResult)) {
-                this.tennisGameScore.addPointFederer();
-            } else {
-                this.tennisGameScore.addPointNadal();
-            }
-
-            if (this.tennisGameScore.isOver()) {
-                this.tennisGameScore.addGameOver();
-            } else {
-                this.tennisGameScore.addPoint();
-            }
+            addPointPlayer(getRandPlayResult());
+            updateGameScore();
         }
 
         this.tennisGameScore.displayGameScore();
     }
+
+    void addPointPlayer(int playResult) {
+        if (isFedererWinPoint(playResult)) {
+            this.tennisGameScore.addPointFederer();
+        } else {
+            this.tennisGameScore.addPointNadal();
+        }
+    }
+
+    void updateGameScore() {
+        if (this.tennisGameScore.isOver()) {
+            this.tennisGameScore.addGameOver();
+        } else {
+            this.tennisGameScore.addPoint();
+        }
+    }
+
 
     int getRandPlayResult() {
         return (int) Math.floor(Math.random() * 1001);

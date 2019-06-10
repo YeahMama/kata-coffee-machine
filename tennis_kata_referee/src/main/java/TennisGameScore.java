@@ -100,4 +100,12 @@ class TennisGameScore {
         return (! isOver());
     }
 
+    public int getFedererScore() {
+        return this.federerScore;
+    }
+
+    public int getNadalScore() {
+        return this.nadalScore;
+    }
+
 }
