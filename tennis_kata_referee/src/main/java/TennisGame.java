@@ -68,22 +68,19 @@ class TennisGame {
     }
 
     private void displayGameScore() {
-        TennisGameTable st = new TennisGameTable();
+        TennisGameTable tennisGameTable = new TennisGameTable();
 
-        //st.setRightAlign(true);//if true then cell text is right aligned
+        tennisGameTable.setShowVerticalLines(true);
+        tennisGameTable.setHeaders(toArrayString(this.gameScoreHeader));
+        tennisGameTable.addRow(toArrayString(this.gameScoreFedererRow));
+        tennisGameTable.addRow(toArrayString(this.gameScoreNadalRow));
+        tennisGameTable.addRow(toArrayString(this.gameScoreWinnerRow));
 
-        String[] str = Arrays.copyOf(this.gameScoreHeader.toArray(), this.gameScoreHeader.toArray().length, String[].class);
-        String[] str2 = Arrays.copyOf(this.gameScoreFedererRow.toArray(), this.gameScoreFedererRow.toArray().length, String[].class);
-        String[] str3 = Arrays.copyOf(this.gameScoreNadalRow.toArray(), this.gameScoreNadalRow.toArray().length, String[].class);
-        String[] str4 = Arrays.copyOf(this.gameScoreWinnerRow.toArray(), this.gameScoreWinnerRow.toArray().length, String[].class);
+        tennisGameTable.print();
+    }
 
-        st.setShowVerticalLines(true);//if false (default) then no vertical lines are shown
-        st.setHeaders(str);//optional - if not used then there will be no header and horizontal lines
-        st.addRow(str2);
-        st.addRow(str3);
-        st.addRow(str4);
-
-        st.print();
+    private String[] toArrayString(ArrayList<String> arrayList) {
+        return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
     }
 
     private boolean isTennisGameOver() {
