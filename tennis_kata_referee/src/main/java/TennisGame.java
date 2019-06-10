@@ -40,7 +40,7 @@ class TennisGame {
         }
 
         displayGameScore();
-        System.out.println(winner + " win the game");
+        System.out.println(winner + " wins the game");
     }
 
     private void displayGameScore() {
