@@ -69,6 +69,15 @@ public class TennisGameTest {
         assertThat(tennisGameOver).isTrue();
     }
 
+    @Test
+    public void should_give_random_play_result_when_it_gives_random_number_between_0_and_1000() {
+        // Act
+        int randPlayResult = tennisGame.getRandPlayResult();
+
+        // Assert
+        assertThat(randPlayResult).isBetween(0, 1000);
+    }
+
     private void initTennisGameScore() {
         tennisGameScore.init();
         tennisGameScore.addPoint(0, 1, "Nadal");

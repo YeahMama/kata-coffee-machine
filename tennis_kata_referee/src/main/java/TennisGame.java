@@ -40,7 +40,7 @@ class TennisGame {
         this.tennisGameScore.displayGameScore();
     }
 
-    private int getRandPlayResult() {
+    int getRandPlayResult() {
         return (int) Math.floor(Math.random() * 1001);
     }
 
