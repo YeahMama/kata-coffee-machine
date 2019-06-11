@@ -1,8 +1,12 @@
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,8 +14,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class TennisGameScoreTest {
 
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    private final PrintStream originalErr = System.err;
+
     @InjectMocks
     private TennisGameScore tennisGameScore;
+
+    @Before
+    public void setUp() {
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+    }
 
     @Test
     public void should_game_over_when_federer_wins_the_game() {
@@ -168,6 +183,35 @@ public class TennisGameScoreTest {
 
         // Assert
         assertThat(arrayListString.get(0)).isEqualTo(arrayString[0]);
+    }
+
+    @Test
+    public void should_display_tennis_game_score_when_adding_one_point() {
+        // Arrange
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointCol();
+
+        // Act
+        tennisGameScore.displayGameScore();
+
+        // Assert
+        assertThat(displayGameScoreTableForOnePoint()).isEqualTo(outContent.toString());
+    }
+
+    private String displayGameScoreTableForOnePoint() {
+        return "+---------+----------------+----------------------+\n" +
+                "|         | Start the game | Federer wins 1 point |\n" +
+                "+---------+----------------+----------------------+\n" +
+                "| Federer | 0              | 15                   |\n" +
+                "| Nadal   | 0              | 0                    |\n" +
+                "|         |                |                      |\n" +
+                "+---------+----------------+----------------------+\n";
+    }
+
+    @After
+    public void tearDown() {
+        System.setOut(originalOut);
+        System.setErr(originalErr);
     }
 
 }
