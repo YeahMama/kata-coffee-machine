@@ -134,4 +134,19 @@ public class TennisGameScoreTest {
         assertThat(tennisGameScore.getGameScoreWinnerRow().get(2)).isEqualTo("Federer wins the game");
     }
 
+    @Test
+    public void should_add_game_column_to_game_score_table_when_it_has_a_point_winner() {
+        // Arrange
+        tennisGameScore.addPointFederer();
+
+        // Act
+        tennisGameScore.addPointCol();
+
+        // Assert
+        assertThat(tennisGameScore.getGameScoreHeader().get(2)).isEqualTo("Federer wins 1 point");
+        assertThat(tennisGameScore.getGameScoreFedererRow().get(2)).isEqualTo("15");
+        assertThat(tennisGameScore.getGameScoreNadalRow().get(2)).isEqualTo("0");
+        assertThat(tennisGameScore.getGameScoreWinnerRow().get(2)).isEqualTo("");
+    }
+
 }
