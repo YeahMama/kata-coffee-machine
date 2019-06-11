@@ -208,6 +208,38 @@ public class TennisGameScoreTest {
                 "+---------+----------------+----------------------+\n";
     }
 
+    @Test
+    public void should_display_tennis_game_score_when_adding_game_over_column_and_only_federer_wins_points() {
+        // Arrange
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointCol();
+
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointCol();
+
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointCol();
+
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addGameOverCol();
+
+        // Act
+        tennisGameScore.displayGameScore();
+
+        // Assert
+        assertThat(display_game_score_table_for_four_points_of_federer_with_game_over_col()).isEqualTo(outContent.toString());
+    }
+
+    private String display_game_score_table_for_four_points_of_federer_with_game_over_col() {
+        return "+---------+----------------+----------------------+----------------------+----------------------+-----------------------+\n" +
+                "|         | Start the game | Federer wins 1 point | Federer wins 1 point | Federer wins 1 point | Federer wins 1 point  |\n" +
+                "+---------+----------------+----------------------+----------------------+----------------------+-----------------------+\n" +
+                "| Federer | 0              | 15                   | 30                   | 40                   | 0                     |\n" +
+                "| Nadal   | 0              | 0                    | 0                    | 0                    | 0                     |\n" +
+                "|         |                |                      |                      |                      | Federer wins the game |\n" +
+                "+---------+----------------+----------------------+----------------------+----------------------+-----------------------+\n";
+    }
+
     @After
     public void tearDown() {
         System.setOut(originalOut);
