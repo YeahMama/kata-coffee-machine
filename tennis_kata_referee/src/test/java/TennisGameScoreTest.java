@@ -48,4 +48,24 @@ public class TennisGameScoreTest {
         assertThat(tennisGameNotOver).isTrue();
     }
 
+    @Test
+    public void should_add_point_to_federer_when_federer_wins_point() {
+        // Act
+        tennisGameScore.addPointFederer();
+
+        // Assert
+        assertThat(tennisGameScore.getFedererScore()).isEqualTo(1);
+        assertThat(tennisGameScore.getWinner()).isEqualTo("Federer");
+    }
+
+    @Test
+    public void should_add_point_to_nadal_when_nadal_wins_point() {
+        // Act
+        tennisGameScore.addPointNadal();
+
+        // Assert
+        assertThat(tennisGameScore.getWinner()).isEqualTo("Nadal");
+        assertThat(tennisGameScore.getNadalScore()).isEqualTo(1);
+    }
+
 }
