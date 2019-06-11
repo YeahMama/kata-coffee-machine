@@ -120,18 +120,24 @@ public class TennisGameScoreTest {
     public void should_add_game_column_to_game_score_table_when_it_has_a_game_winner() {
         // Arrange
         tennisGameScore.addPointFederer();
+        tennisGameScore.addPointCol();
+
         tennisGameScore.addPointFederer();
+        tennisGameScore.addPointCol();
+
         tennisGameScore.addPointFederer();
+        tennisGameScore.addPointCol();
+
         tennisGameScore.addPointFederer();
 
         // Act
         tennisGameScore.addGameOverCol();
 
         // Assert
-        assertThat(tennisGameScore.getGameScoreHeader().get(2)).isEqualTo("Federer wins 1 point");
-        assertThat(tennisGameScore.getGameScoreFedererRow().get(2)).isEqualTo("0");
-        assertThat(tennisGameScore.getGameScoreNadalRow().get(2)).isEqualTo("0");
-        assertThat(tennisGameScore.getGameScoreWinnerRow().get(2)).isEqualTo("Federer wins the game");
+        assertThat(tennisGameScore.getGameScoreHeader().get(5)).isEqualTo("Federer wins 1 point");
+        assertThat(tennisGameScore.getGameScoreFedererRow().get(5)).isEqualTo("0");
+        assertThat(tennisGameScore.getGameScoreNadalRow().get(5)).isEqualTo("0");
+        assertThat(tennisGameScore.getGameScoreWinnerRow().get(5)).isEqualTo("Federer wins the game");
     }
 
     @Test
