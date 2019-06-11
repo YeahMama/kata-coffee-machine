@@ -119,7 +119,10 @@ public class TennisGameScoreTest {
     @Test
     public void should_add_game_column_to_game_score_table_when_it_has_a_game_winner() {
         // Arrange
-        tennisGameScore.setWinner("Federer");
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointFederer();
 
         // Act
         tennisGameScore.addGameOverCol();
