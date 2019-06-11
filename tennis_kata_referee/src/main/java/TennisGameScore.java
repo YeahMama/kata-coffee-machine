@@ -21,9 +21,7 @@ class TennisGameScore {
         this.gameScoreFedererRow = new ArrayList<>();
         this.gameScoreNadalRow = new ArrayList<>();
         this.gameScoreWinnerRow = new ArrayList<>();
-    }
 
-    void init() {
         this.gameScoreHeader.add("");
         this.gameScoreHeader.add("Start the game");
 
@@ -55,7 +53,7 @@ class TennisGameScore {
         this.gameScoreHeader.add(this.winner + " wins 1 point");
     }
 
-    private String toTennisScore(int score) {
+    String toTennisScore(int score) {
         switch(score) {
             case 1: return "15";
             case 2: return "30";
@@ -77,8 +75,7 @@ class TennisGameScore {
         tennisGameTable.print();
     }
 
-
-    private String[] toArrayString(ArrayList<String> arrayList) {
+    String[] toArrayString(ArrayList<String> arrayList) {
         return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
     }
 
@@ -100,60 +97,40 @@ class TennisGameScore {
         return (! isOver());
     }
 
-    public int getFedererScore() {
+    int getFedererScore() {
         return federerScore;
     }
 
-    public void setFedererScore(int federerScore) {
+    void setFedererScore(int federerScore) {
         this.federerScore = federerScore;
     }
 
-    public int getNadalScore() {
+    int getNadalScore() {
         return nadalScore;
     }
 
-    public void setNadalScore(int nadalScore) {
+    void setNadalScore(int nadalScore) {
         this.nadalScore = nadalScore;
     }
 
-    public String getWinner() {
+    String getWinner() {
         return winner;
     }
 
-    public void setWinner(String winner) {
-        this.winner = winner;
-    }
-
-    public ArrayList<String> getGameScoreHeader() {
+    ArrayList<String> getGameScoreHeader() {
         return gameScoreHeader;
     }
 
-    public void setGameScoreHeader(ArrayList<String> gameScoreHeader) {
-        this.gameScoreHeader = gameScoreHeader;
-    }
-
-    public ArrayList<String> getGameScoreFedererRow() {
+    ArrayList<String> getGameScoreFedererRow() {
         return gameScoreFedererRow;
     }
 
-    public void setGameScoreFedererRow(ArrayList<String> gameScoreFedererRow) {
-        this.gameScoreFedererRow = gameScoreFedererRow;
-    }
-
-    public ArrayList<String> getGameScoreNadalRow() {
+    ArrayList<String> getGameScoreNadalRow() {
         return gameScoreNadalRow;
     }
 
-    public void setGameScoreNadalRow(ArrayList<String> gameScoreNadalRow) {
-        this.gameScoreNadalRow = gameScoreNadalRow;
-    }
-
-    public ArrayList<String> getGameScoreWinnerRow() {
+    ArrayList<String> getGameScoreWinnerRow() {
         return gameScoreWinnerRow;
-    }
-
-    public void setGameScoreWinnerRow(ArrayList<String> gameScoreWinnerRow) {
-        this.gameScoreWinnerRow = gameScoreWinnerRow;
     }
 
 }
