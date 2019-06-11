@@ -1,45 +1,24 @@
 class TennisGame {
 
-    private TennisGameScore tennisGameScore;
+    private TennisReferee tennisReferee;
 
     TennisGame() {
-        this.tennisGameScore = new TennisGameScore();
+        this.tennisReferee = new TennisReferee();
     }
 
     void play() {
         System.out.println("Game score");
 
-        while (this.tennisGameScore.isNotOver()) {
-            addPointPlayer(getRandPlayResult());
-            updateGameScore();
+        while (this.tennisReferee.hasNotAnnoucedTennisGameIsOver()) {
+            this.tennisReferee.addPointPlayer(getRandPlayResult());
+            this.tennisReferee.updateGameScore();
         }
 
-        this.tennisGameScore.displayGameScore();
+        this.tennisReferee.displayGameScore();
     }
-
-    void addPointPlayer(int playResult) {
-        if (isFedererWinPoint(playResult)) {
-            this.tennisGameScore.addPointFederer();
-        } else {
-            this.tennisGameScore.addPointNadal();
-        }
-    }
-
-    void updateGameScore() {
-        if (this.tennisGameScore.isOver()) {
-            this.tennisGameScore.addGameOverCol();
-        } else {
-            this.tennisGameScore.addPointCol();
-        }
-    }
-
 
     int getRandPlayResult() {
         return (int) Math.floor(Math.random() * 1001);
-    }
-
-    boolean isFedererWinPoint(int randResult) {
-        return randResult % 2 == 0;
     }
 
 }
