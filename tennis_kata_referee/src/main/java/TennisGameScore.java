@@ -75,8 +75,7 @@ class TennisGameScore {
         tennisGameTable.print();
     }
 
-
-    private String[] toArrayString(ArrayList<String> arrayList) {
+    String[] toArrayString(ArrayList<String> arrayList) {
         return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
     }
 

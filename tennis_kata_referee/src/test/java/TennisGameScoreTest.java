@@ -3,6 +3,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -153,6 +155,19 @@ public class TennisGameScoreTest {
         assertThat(tennisGameScore.getGameScoreFedererRow().get(2)).isEqualTo("15");
         assertThat(tennisGameScore.getGameScoreNadalRow().get(2)).isEqualTo("0");
         assertThat(tennisGameScore.getGameScoreWinnerRow().get(2)).isEqualTo("");
+    }
+
+    @Test
+    public void should_convert_array_list_to_array_string() {
+        // Arrange
+        ArrayList<String> arrayListString = new ArrayList<>();
+        arrayListString.add("Something");
+
+        // Act
+        String[] arrayString = tennisGameScore.toArrayString(arrayListString);
+
+        // Assert
+        assertThat(arrayListString.get(0)).isEqualTo(arrayString[0]);
     }
 
 }
