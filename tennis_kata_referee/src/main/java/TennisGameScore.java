@@ -21,9 +21,7 @@ class TennisGameScore {
         this.gameScoreFedererRow = new ArrayList<>();
         this.gameScoreNadalRow = new ArrayList<>();
         this.gameScoreWinnerRow = new ArrayList<>();
-    }
 
-    void init() {
         this.gameScoreHeader.add("");
         this.gameScoreHeader.add("Start the game");
 

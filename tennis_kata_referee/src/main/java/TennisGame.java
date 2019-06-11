@@ -8,7 +8,6 @@ class TennisGame {
 
     void play() {
         System.out.println("Game score");
-        this.tennisGameScore.init();
 
         while (this.tennisGameScore.isNotOver()) {
             addPointPlayer(getRandPlayResult());

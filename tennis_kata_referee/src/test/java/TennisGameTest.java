@@ -98,7 +98,6 @@ public class TennisGameTest {
     @Test
     public void should_finish_tennis_game_when_it_is_over() {
         // Arrange
-        Mockito.doNothing().when(tennisGameScore).init();
         Mockito.when(tennisGameScore.isNotOver()).thenReturn(false);
         Mockito.doNothing().when(tennisGameScore).displayGameScore();
 
