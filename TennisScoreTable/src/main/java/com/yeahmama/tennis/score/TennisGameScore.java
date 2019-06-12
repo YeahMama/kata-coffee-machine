@@ -3,6 +3,8 @@ package com.yeahmama.tennis.score;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.yeahmama.tennis.utils.TennisUtils.toTennisScore;
+
 public class TennisGameScore {
 
     private int playerOneScore;
@@ -61,19 +63,6 @@ public class TennisGameScore {
         this.gameScoreWinnerRow.add(this.winner + " wins the game");
     }
 
-    public String toTennisScore(int score) {
-        switch (score) {
-            case 1:
-                return "15";
-            case 2:
-                return "30";
-            case 3:
-                return "40";
-        }
-
-        return "0";
-    }
-
     public void displayGameScoreTable() {
         System.out.println("Game score");
 
@@ -88,7 +77,7 @@ public class TennisGameScore {
         tennisGameTable.print();
     }
 
-    public String[] toArrayString(ArrayList<String> arrayList) {
+    String[] toArrayString(ArrayList<String> arrayList) {
         return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
     }
 
@@ -104,7 +93,7 @@ public class TennisGameScore {
         return playerOneScore;
     }
 
-    public void setPlayerOneScore(int playerOneScore) {
+    void setPlayerOneScore(int playerOneScore) {
         this.playerOneScore = playerOneScore;
     }
 
@@ -112,27 +101,27 @@ public class TennisGameScore {
         return playerTwoScore;
     }
 
-    public void setPlayerTwoScore(int playerTwoScore) {
+    void setPlayerTwoScore(int playerTwoScore) {
         this.playerTwoScore = playerTwoScore;
     }
 
-    public String getWinner() {
+    String getWinner() {
         return winner;
     }
 
-    public ArrayList<String> getGameScoreHeader() {
+    ArrayList<String> getGameScoreHeader() {
         return gameScoreHeader;
     }
 
-    public ArrayList<String> getGameScorePlayerOneRow() {
+    ArrayList<String> getGameScorePlayerOneRow() {
         return gameScorePlayerOneRow;
     }
 
-    public ArrayList<String> getGameScorePlayerTwoRow() {
+    ArrayList<String> getGameScorePlayerTwoRow() {
         return gameScorePlayerTwoRow;
     }
 
-    public ArrayList<String> getGameScoreWinnerRow() {
+    ArrayList<String> getGameScoreWinnerRow() {
         return gameScoreWinnerRow;
     }
 
