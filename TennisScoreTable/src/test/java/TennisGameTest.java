@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TennisGameTest {
@@ -16,23 +17,46 @@ public class TennisGameTest {
     @Mock
     private TennisReferee tennisReferee;
 
-    @Test
-    public void should_give_random_play_result_when_it_gives_random_number_between_0_and_1000() {
-        // Act
-        int randPlayResult = tennisGame.getRandPlayResult();
+    @Mock
+    private TennisPlayer tennisPlayerOne;
 
-        // Assert
-        assertThat(randPlayResult).isBetween(0, 1000);
-    }
+    @Mock
+    private TennisPlayer tennisPlayerTwo;
 
     @Test
     public void should_finish_tennis_game_when_it_is_over() {
         // Arrange
-        Mockito.when(tennisReferee.hasNotAnnoucedTennisGameIsOver()).thenReturn(false);
-        Mockito.doNothing().when(tennisReferee).displayGameScore();
+        when(tennisReferee.hasNotAnnoucedTennisGameIsOver()).thenReturn(false);
+        doNothing().when(tennisReferee).displayGameScore();
 
         // Act
         tennisGame.play();
+    }
+
+    @Test
+    public void should_player_one_wins_the_point_when_he_has_better_hit_than_player_two() {
+        // Arrange
+        when(tennisPlayerOne.hit()).thenReturn(1);
+        when(tennisPlayerTwo.hit()).thenReturn(0);
+
+        // Act
+        int winnerPoint = tennisGame.winnerPoint();
+
+        // Assert
+        assertThat(winnerPoint).isEqualTo(1);
+    }
+
+    @Test
+    public void should_player_two_wins_the_point_when_he_has_better_hit_than_player_one() {
+        // Arrange
+        when(tennisPlayerOne.hit()).thenReturn(0);
+        when(tennisPlayerTwo.hit()).thenReturn(1);
+
+        // Act
+        int winnerPoint = tennisGame.winnerPoint();
+
+        // Assert
+        assertThat(winnerPoint).isEqualTo(2);
     }
 
 }
