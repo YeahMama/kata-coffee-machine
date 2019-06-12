@@ -1,3 +1,6 @@
+import com.yeahmama.tennis.actor.TennisReferee;
+import com.yeahmama.tennis.score.TennisGameScore;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

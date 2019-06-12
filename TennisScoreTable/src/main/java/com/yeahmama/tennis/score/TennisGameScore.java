@@ -1,7 +1,9 @@
+package com.yeahmama.tennis.score;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class TennisGameScore {
+public class TennisGameScore {
 
     private int playerOneScore;
     private int playerTwoScore;
@@ -13,7 +15,7 @@ class TennisGameScore {
     private ArrayList<String> gameScorePlayerTwoRow;
     private ArrayList<String> gameScoreWinnerRow;
 
-    TennisGameScore() {
+    public TennisGameScore() {
         this.playerOneScore = 0;
         this.playerTwoScore = 0;
 
@@ -35,31 +37,31 @@ class TennisGameScore {
         this.gameScoreWinnerRow.add("");
     }
 
-    void addPointPlayerOne() {
+    public void addPointPlayerOne() {
         this.playerOneScore += 1;
         this.winner = "Player 1";
     }
 
-    void addPointPlayerTwo() {
+    public void addPointPlayerTwo() {
         this.playerTwoScore += 1;
         this.winner = "Player 2";
     }
 
-    void addPointCol() {
+    public void addPointCol() {
         this.gameScoreHeader.add(this.winner + " wins 1 point");
         this.gameScorePlayerOneRow.add(toTennisScore(this.playerOneScore));
         this.gameScorePlayerTwoRow.add(toTennisScore(this.playerTwoScore));
         this.gameScoreWinnerRow.add("");
     }
 
-    void addGameOverCol() {
+    public void addGameOverCol() {
         this.gameScoreHeader.add(this.winner + " wins 1 point");
         this.gameScorePlayerOneRow.add("0");
         this.gameScorePlayerTwoRow.add("0");
         this.gameScoreWinnerRow.add(this.winner + " wins the game");
     }
 
-    String toTennisScore(int score) {
+    public String toTennisScore(int score) {
         switch(score) {
             case 1: return "15";
             case 2: return "30";
@@ -69,7 +71,7 @@ class TennisGameScore {
         return "0";
     }
 
-    void displayGameScoreTable() {
+    public void displayGameScoreTable() {
         System.out.println("Game score");
 
         TennisGameTable tennisGameTable = new TennisGameTable();
@@ -83,51 +85,51 @@ class TennisGameScore {
         tennisGameTable.print();
     }
 
-    String[] toArrayString(ArrayList<String> arrayList) {
+    public String[] toArrayString(ArrayList<String> arrayList) {
         return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
     }
 
-    boolean isOver() {
+    public boolean isOver() {
         return this.playerOneScore == 4 || this.playerTwoScore == 4;
     }
 
-    boolean isNotOver() {
+    public boolean isNotOver() {
         return (! isOver());
     }
 
-    int getPlayerOneScore() {
+    public int getPlayerOneScore() {
         return playerOneScore;
     }
 
-    void setPlayerOneScore(int playerOneScore) {
+    public void setPlayerOneScore(int playerOneScore) {
         this.playerOneScore = playerOneScore;
     }
 
-    int getPlayerTwoScore() {
+    public int getPlayerTwoScore() {
         return playerTwoScore;
     }
 
-    void setPlayerTwoScore(int playerTwoScore) {
+    public void setPlayerTwoScore(int playerTwoScore) {
         this.playerTwoScore = playerTwoScore;
     }
 
-    String getWinner() {
+    public String getWinner() {
         return winner;
     }
 
-    ArrayList<String> getGameScoreHeader() {
+    public ArrayList<String> getGameScoreHeader() {
         return gameScoreHeader;
     }
 
-    ArrayList<String> getGameScorePlayerOneRow() {
+    public ArrayList<String> getGameScorePlayerOneRow() {
         return gameScorePlayerOneRow;
     }
 
-    ArrayList<String> getGameScorePlayerTwoRow() {
+    public ArrayList<String> getGameScorePlayerTwoRow() {
         return gameScorePlayerTwoRow;
     }
 
-    ArrayList<String> getGameScoreWinnerRow() {
+    public ArrayList<String> getGameScoreWinnerRow() {
         return gameScoreWinnerRow;
     }
 

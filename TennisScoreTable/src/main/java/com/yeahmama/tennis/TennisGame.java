@@ -1,4 +1,9 @@
-class TennisGame {
+package com.yeahmama.tennis;
+
+import com.yeahmama.tennis.actor.TennisPlayer;
+import com.yeahmama.tennis.actor.TennisReferee;
+
+public class TennisGame {
 
     private static final int PLAYER_ONE = 1;
     private static final int PLAYER_TWO = 2;
@@ -15,7 +20,7 @@ class TennisGame {
         this.tennisPlayerTwo = new TennisPlayer();
     }
 
-    void play() {
+    public void play() {
         while (this.tennisReferee.hasNotAnnouncedTennisGameIsOver()) {
             int winnerPoint = winnerPoint();
 
@@ -26,7 +31,7 @@ class TennisGame {
         this.tennisReferee.displayGameScoreTable();
     }
 
-    int winnerPoint() {
+    public int winnerPoint() {
         int tennisPlayerOneHit = -1;
         int tennisPlayerTwoHit = -1;
 

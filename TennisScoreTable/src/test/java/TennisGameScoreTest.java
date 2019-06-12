@@ -1,3 +1,5 @@
+import com.yeahmama.tennis.score.TennisGameScore;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
