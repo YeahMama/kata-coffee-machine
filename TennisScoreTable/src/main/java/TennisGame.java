@@ -16,8 +16,6 @@ class TennisGame {
     }
 
     void play() {
-        System.out.println("Game score");
-
         while (this.tennisReferee.hasNotAnnoucedTennisGameIsOver()) {
             int winnerPoint = winnerPoint();
 

@@ -64,6 +64,8 @@ class TennisGameScore {
     }
 
      void displayGameScore() {
+        System.out.println("Game score");
+
         TennisGameTable tennisGameTable = new TennisGameTable();
 
         tennisGameTable.setShowVerticalLines(true);
