@@ -62,10 +62,13 @@ public class TennisGameScore {
     }
 
     public String toTennisScore(int score) {
-        switch(score) {
-            case 1: return "15";
-            case 2: return "30";
-            case 3: return "40";
+        switch (score) {
+            case 1:
+                return "15";
+            case 2:
+                return "30";
+            case 3:
+                return "40";
         }
 
         return "0";
@@ -94,7 +97,7 @@ public class TennisGameScore {
     }
 
     public boolean isNotOver() {
-        return (! isOver());
+        return (!isOver());
     }
 
     public int getPlayerOneScore() {

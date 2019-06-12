@@ -1,4 +1,5 @@
-import com.yeahmama.tennis.actor.TennisPlayer;
+package com.yeahmama.tennis.actor;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

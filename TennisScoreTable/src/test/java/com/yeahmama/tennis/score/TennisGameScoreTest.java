@@ -1,4 +1,4 @@
-import com.yeahmama.tennis.score.TennisGameScore;
+package com.yeahmama.tennis.score;
 
 import org.junit.After;
 import org.junit.Before;
