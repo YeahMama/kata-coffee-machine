@@ -10,6 +10,9 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class TennisRefereeTest {
 
+    private static final int PLAYER_ONE = 1;
+    private static final int PLAYER_TWO = 2;
+
     @InjectMocks
     private TennisReferee tennisReferee;
 
@@ -17,82 +20,80 @@ public class TennisRefereeTest {
     private TennisGameScore tennisGameScore;
 
     @Test
-    public void should_federer_wins_point_when_it_has_an_even_number() {
-        // Arrange
-        int randResult = 2;
-
+    public void should_player_one_wins_one_point_when_it_has_an_odd_number() {
         // Act
-        boolean federerWinPoint = tennisReferee.isFedererWinPoint(randResult);
+        boolean playerOneWinsPoint = tennisReferee.isPlayerOneWinPoint(PLAYER_ONE);
 
         // Assert
-        assertThat(federerWinPoint).isTrue();
+        assertThat(playerOneWinsPoint).isTrue();
     }
 
     @Test
-    public void should_nadal_wins_point_when_it_has_an_odd_number() {
-        // Arrange
-        int randResult = 1;
-
+    public void should_player_two_wins_point_when_it_has_an_even_number() {
         // Act
-        boolean federerWinPoint = tennisReferee.isFedererWinPoint(randResult);
+        boolean playerTwoWinsPoint = tennisReferee.isPlayerOneWinPoint(PLAYER_TWO);
 
         // Assert
-        assertThat(federerWinPoint).isFalse();
+        assertThat(playerTwoWinsPoint).isFalse();
     }
 
     @Test
-    public void should_add_point_to_federer_when_federer_wins_one_point() {
+    public void should_add_point_to_player_one_when_he_is_winner_point() {
         // Arrange
-        doNothing().when(tennisGameScore).addPointFederer();
-        when(tennisGameScore.getFedererScore()).thenReturn(1);
+        doNothing().when(tennisGameScore).addPointPlayerOne();
+        when(tennisGameScore.getPlayerOneScore()).thenReturn(1);
 
         // Act
-        tennisReferee.addPointPlayer(2);
+        tennisReferee.addPointPlayer(PLAYER_ONE);
 
         // Assert
-        assertThat(tennisGameScore.getFedererScore()).isEqualTo(1);
+        assertThat(tennisGameScore.getPlayerOneScore()).isEqualTo(1);
     }
 
     @Test
-    public void should_add_point_to_nadal_when_nadal_wins_one_point() {
+    public void should_add_point_to_player_two_when_he_is_winner_point() {
         // Arrange
-        doNothing().when(tennisGameScore).addPointNadal();
-        when(tennisGameScore.getNadalScore()).thenReturn(1);
+        doNothing().when(tennisGameScore).addPointPlayerTwo();
+        when(tennisGameScore.getPlayerTwoScore()).thenReturn(1);
 
         // Act
-        tennisReferee.addPointPlayer(1);
+        tennisReferee.addPointPlayer(PLAYER_TWO);
 
         // Assert
-        assertThat(tennisGameScore.getNadalScore()).isEqualTo(1);
+        assertThat(tennisGameScore.getPlayerTwoScore()).isEqualTo(1);
     }
 
     @Test
-    public void should_update_score_when_tennis_game_is_over() {
+    public void should_add_game_over_column_to_game_score_table_when_tennis_game_is_over() {
         // Arrange
         when(tennisGameScore.isOver()).thenReturn(true);
-        doNothing().when(tennisGameScore).addGameOverCol();
 
         // Act
-        tennisReferee.updateGameScore();
+        tennisReferee.updateGameScoreTable();
+
+        // Assert
+        verify(tennisGameScore, times(1)).addGameOverCol();
     }
 
     @Test
-    public void should_update_score_when_a_player_wins_point() {
+    public void should_add_point_column_to_game_score_table_when_a_player_wins_a_point() {
         // Arrange
         when(tennisGameScore.isOver()).thenReturn(false);
-        doNothing().when(tennisGameScore).addPointCol();
 
         // Act
-        tennisReferee.updateGameScore();
+        tennisReferee.updateGameScoreTable();
+
+        // Assert
+        verify(tennisGameScore, times(1)).addPointCol();
     }
 
     @Test
     public void should_display_game_score_only_once() {
         // Act
-        tennisReferee.displayGameScore();
+        tennisReferee.displayGameScoreTable();
 
         // Assert
-        verify(tennisGameScore, times(1)).displayGameScore();
+        verify(tennisGameScore, times(1)).displayGameScoreTable();
     }
 
     @Test
@@ -107,7 +108,7 @@ public class TennisRefereeTest {
     @Test
     public void should_announce_tennis_game_is_not_over_only_once() {
         // Act
-        tennisReferee.hasNotAnnoucedTennisGameIsOver();
+        tennisReferee.hasNotAnnouncedTennisGameIsOver();
 
         // Assert
         verify(tennisGameScore, times(1)).isNotOver();

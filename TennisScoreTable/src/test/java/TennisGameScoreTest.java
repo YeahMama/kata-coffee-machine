@@ -29,9 +29,9 @@ public class TennisGameScoreTest {
     }
 
     @Test
-    public void should_game_over_when_federer_wins_the_game() {
+    public void should_game_over_when_player_one_wins_the_game() {
         // Arrange
-        tennisGameScore.setFedererScore(4);
+        tennisGameScore.setPlayerOneScore(4);
 
         // Act
         boolean tennisGameOver = tennisGameScore.isOver();
@@ -41,9 +41,9 @@ public class TennisGameScoreTest {
     }
 
     @Test
-    public void should_game_over_when_nadal_wins_the_game() {
+    public void should_game_over_when_player_two_wins_the_game() {
         // Arrange
-        tennisGameScore.setNadalScore(4);
+        tennisGameScore.setPlayerTwoScore(4);
 
         // Act
         boolean tennisGameOver = tennisGameScore.isOver();
@@ -55,8 +55,8 @@ public class TennisGameScoreTest {
     @Test
     public void should_not_game_over_when_no_one_wins() {
         // Arrange
-        tennisGameScore.setFedererScore(2);
-        tennisGameScore.setNadalScore(2);
+        tennisGameScore.setPlayerOneScore(2);
+        tennisGameScore.setPlayerTwoScore(2);
 
         // Act
         boolean tennisGameNotOver = tennisGameScore.isNotOver();
@@ -66,23 +66,23 @@ public class TennisGameScoreTest {
     }
 
     @Test
-    public void should_add_point_to_federer_when_federer_wins_point() {
+    public void should_add_point_to_player_one_when_he_wins_point() {
         // Act
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
 
         // Assert
-        assertThat(tennisGameScore.getFedererScore()).isEqualTo(1);
-        assertThat(tennisGameScore.getWinner()).isEqualTo("Federer");
+        assertThat(tennisGameScore.getPlayerOneScore()).isEqualTo(1);
+        assertThat(tennisGameScore.getWinner()).isEqualTo("Player 1");
     }
 
     @Test
-    public void should_add_point_to_nadal_when_nadal_wins_point() {
+    public void should_add_point_to_player_two_when_he_wins_point() {
         // Act
-        tennisGameScore.addPointNadal();
+        tennisGameScore.addPointPlayerTwo();
 
         // Assert
-        assertThat(tennisGameScore.getWinner()).isEqualTo("Nadal");
-        assertThat(tennisGameScore.getNadalScore()).isEqualTo(1);
+        assertThat(tennisGameScore.getPlayerTwoScore()).isEqualTo(1);
+        assertThat(tennisGameScore.getWinner()).isEqualTo("Player 2");
     }
 
     @Test
@@ -134,41 +134,41 @@ public class TennisGameScoreTest {
     }
 
     @Test
-    public void should_add_game_column_to_game_score_table_when_it_has_a_game_winner() {
+    public void should_add_game_over_column_to_game_score_table_when_it_has_a_game_winner() {
         // Arrange
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
 
         // Act
         tennisGameScore.addGameOverCol();
 
         // Assert
-        assertThat(tennisGameScore.getGameScoreHeader().get(5)).isEqualTo("Federer wins 1 point");
-        assertThat(tennisGameScore.getGameScoreFedererRow().get(5)).isEqualTo("0");
-        assertThat(tennisGameScore.getGameScoreNadalRow().get(5)).isEqualTo("0");
-        assertThat(tennisGameScore.getGameScoreWinnerRow().get(5)).isEqualTo("Federer wins the game");
+        assertThat(tennisGameScore.getGameScoreHeader().get(5)).isEqualTo("Player 1 wins 1 point");
+        assertThat(tennisGameScore.getGameScorePlayerOneRow().get(5)).isEqualTo("0");
+        assertThat(tennisGameScore.getGameScorePlayerTwoRow().get(5)).isEqualTo("0");
+        assertThat(tennisGameScore.getGameScoreWinnerRow().get(5)).isEqualTo("Player 1 wins the game");
     }
 
     @Test
-    public void should_add_game_column_to_game_score_table_when_it_has_a_point_winner() {
+    public void should_add_point_column_to_game_score_table_when_it_has_a_point_winner() {
         // Arrange
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
 
         // Act
         tennisGameScore.addPointCol();
 
         // Assert
-        assertThat(tennisGameScore.getGameScoreHeader().get(2)).isEqualTo("Federer wins 1 point");
-        assertThat(tennisGameScore.getGameScoreFedererRow().get(2)).isEqualTo("15");
-        assertThat(tennisGameScore.getGameScoreNadalRow().get(2)).isEqualTo("0");
+        assertThat(tennisGameScore.getGameScoreHeader().get(2)).isEqualTo("Player 1 wins 1 point");
+        assertThat(tennisGameScore.getGameScorePlayerOneRow().get(2)).isEqualTo("15");
+        assertThat(tennisGameScore.getGameScorePlayerTwoRow().get(2)).isEqualTo("0");
         assertThat(tennisGameScore.getGameScoreWinnerRow().get(2)).isEqualTo("");
     }
 
@@ -186,58 +186,60 @@ public class TennisGameScoreTest {
     }
 
     @Test
-    public void should_display_tennis_game_score_when_adding_one_point() {
+    public void should_have_tennis_game_score_table_with_one_point_column_when_adding_one_point() {
         // Arrange
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
         // Act
-        tennisGameScore.displayGameScore();
+        tennisGameScore.displayGameScoreTable();
 
         // Assert
-        assertThat(displayGameScoreTableForOnePoint()).isEqualTo(outContent.toString());
+        assertThat(displayGameScoreTableWithOnePoint()).isEqualTo(outContent.toString());
     }
 
-    private String displayGameScoreTableForOnePoint() {
-        return "+---------+----------------+----------------------+\n" +
-                "|         | Start the game | Federer wins 1 point |\n" +
-                "+---------+----------------+----------------------+\n" +
-                "| Federer | 0              | 15                   |\n" +
-                "| Nadal   | 0              | 0                    |\n" +
-                "|         |                |                      |\n" +
-                "+---------+----------------+----------------------+\n";
+    private String displayGameScoreTableWithOnePoint() {
+        return "Game score\n" +
+                "+----------+----------------+-----------------------+\n" +
+                "|          | Start the game | Player 1 wins 1 point |\n" +
+                "+----------+----------------+-----------------------+\n" +
+                "| Player 1 | 0              | 15                    |\n" +
+                "| Player 2 | 0              | 0                     |\n" +
+                "|          |                |                       |\n" +
+                "+----------+----------------+-----------------------+\n";
     }
 
     @Test
-    public void should_display_tennis_game_score_when_adding_game_over_column_and_only_federer_wins_points() {
+    public void should_have_final_tennis_game_score_table_when_adding_game_over_column() {
         // Arrange
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
-        tennisGameScore.addPointFederer();
+        tennisGameScore.addPointPlayerOne();
         tennisGameScore.addGameOverCol();
 
         // Act
-        tennisGameScore.displayGameScore();
+        tennisGameScore.displayGameScoreTable();
 
         // Assert
-        assertThat(display_game_score_table_for_four_points_of_federer_with_game_over_col()).isEqualTo(outContent.toString());
+        assertThat(displayFinalGameScoreTable()).isEqualTo(outContent.toString());
     }
 
-    private String display_game_score_table_for_four_points_of_federer_with_game_over_col() {
-        return "+---------+----------------+----------------------+----------------------+----------------------+-----------------------+\n" +
-                "|         | Start the game | Federer wins 1 point | Federer wins 1 point | Federer wins 1 point | Federer wins 1 point  |\n" +
-                "+---------+----------------+----------------------+----------------------+----------------------+-----------------------+\n" +
-                "| Federer | 0              | 15                   | 30                   | 40                   | 0                     |\n" +
-                "| Nadal   | 0              | 0                    | 0                    | 0                    | 0                     |\n" +
-                "|         |                |                      |                      |                      | Federer wins the game |\n" +
-                "+---------+----------------+----------------------+----------------------+----------------------+-----------------------+\n";
+    private String displayFinalGameScoreTable() {
+        return "Game score\n" +
+                "+----------+----------------+-----------------------+-----------------------+-----------------------+------------------------+\n" +
+                "|          | Start the game | Player 1 wins 1 point | Player 1 wins 1 point | Player 1 wins 1 point | Player 1 wins 1 point  |\n" +
+                "+----------+----------------+-----------------------+-----------------------+-----------------------+------------------------+\n" +
+                "| Player 1 | 0              | 15                    | 30                    | 40                    | 0                      |\n" +
+                "| Player 2 | 0              | 0                     | 0                     | 0                     | 0                      |\n" +
+                "|          |                |                       |                       |                       | Player 1 wins the game |\n" +
+                "+----------+----------------+-----------------------+-----------------------+-----------------------+------------------------+\n";
     }
 
     @After

@@ -2,7 +2,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,10 +23,10 @@ public class TennisGameTest {
     private TennisPlayer tennisPlayerTwo;
 
     @Test
-    public void should_finish_tennis_game_when_it_is_over() {
+    public void should_stop_tennis_game_when_referee_announce_the_end_of_tennis_game() {
         // Arrange
-        when(tennisReferee.hasNotAnnoucedTennisGameIsOver()).thenReturn(false);
-        doNothing().when(tennisReferee).displayGameScore();
+        when(tennisReferee.hasNotAnnouncedTennisGameIsOver()).thenReturn(false);
+        doNothing().when(tennisReferee).displayGameScoreTable();
 
         // Act
         tennisGame.play();

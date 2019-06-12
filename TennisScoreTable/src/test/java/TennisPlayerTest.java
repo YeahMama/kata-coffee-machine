@@ -12,7 +12,7 @@ public class TennisPlayerTest {
     private TennisPlayer tennisPlayer;
 
     @Test
-    public void should_have_hit_power_between_0_and_1000() {
+    public void should_have_tennis_player_hit_between_0_and_1000() {
         // Act
         int tennisPlayerHit = tennisPlayer.hit();
 

@@ -16,14 +16,14 @@ class TennisGame {
     }
 
     void play() {
-        while (this.tennisReferee.hasNotAnnoucedTennisGameIsOver()) {
+        while (this.tennisReferee.hasNotAnnouncedTennisGameIsOver()) {
             int winnerPoint = winnerPoint();
 
             this.tennisReferee.addPointPlayer(winnerPoint);
-            this.tennisReferee.updateGameScore();
+            this.tennisReferee.updateGameScoreTable();
         }
 
-        this.tennisReferee.displayGameScore();
+        this.tennisReferee.displayGameScoreTable();
     }
 
     int winnerPoint() {

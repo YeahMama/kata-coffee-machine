@@ -3,54 +3,60 @@ import java.util.Arrays;
 
 class TennisGameScore {
 
-    private int federerScore;
-    private int nadalScore;
+    private int playerOneScore;
+    private int playerTwoScore;
 
     private String winner;
 
     private ArrayList<String> gameScoreHeader;
-    private ArrayList<String> gameScoreFedererRow;
-    private ArrayList<String> gameScoreNadalRow;
+    private ArrayList<String> gameScorePlayerOneRow;
+    private ArrayList<String> gameScorePlayerTwoRow;
     private ArrayList<String> gameScoreWinnerRow;
 
     TennisGameScore() {
-        this.federerScore = 0;
-        this.nadalScore = 0;
+        this.playerOneScore = 0;
+        this.playerTwoScore = 0;
 
         this.gameScoreHeader = new ArrayList<>();
-        this.gameScoreFedererRow = new ArrayList<>();
-        this.gameScoreNadalRow = new ArrayList<>();
+        this.gameScorePlayerOneRow = new ArrayList<>();
+        this.gameScorePlayerTwoRow = new ArrayList<>();
         this.gameScoreWinnerRow = new ArrayList<>();
 
         this.gameScoreHeader.add("");
         this.gameScoreHeader.add("Start the game");
 
-        this.gameScoreFedererRow.add("Federer");
-        this.gameScoreFedererRow.add("0");
+        this.gameScorePlayerOneRow.add("Player 1");
+        this.gameScorePlayerOneRow.add("0");
 
-        this.gameScoreNadalRow.add("Nadal");
-        this.gameScoreNadalRow.add("0");
+        this.gameScorePlayerTwoRow.add("Player 2");
+        this.gameScorePlayerTwoRow.add("0");
 
         this.gameScoreWinnerRow.add("");
+        this.gameScoreWinnerRow.add("");
+    }
+
+    void addPointPlayerOne() {
+        this.playerOneScore += 1;
+        this.winner = "Player 1";
+    }
+
+    void addPointPlayerTwo() {
+        this.playerTwoScore += 1;
+        this.winner = "Player 2";
+    }
+
+    void addPointCol() {
+        this.gameScoreHeader.add(this.winner + " wins 1 point");
+        this.gameScorePlayerOneRow.add(toTennisScore(this.playerOneScore));
+        this.gameScorePlayerTwoRow.add(toTennisScore(this.playerTwoScore));
         this.gameScoreWinnerRow.add("");
     }
 
     void addGameOverCol() {
-        this.addWinnerPoint();
-        this.gameScoreFedererRow.add("0");
-        this.gameScoreNadalRow.add("0");
-        this.gameScoreWinnerRow.add(this.winner + " wins the game");
-    }
-
-    void addPointCol() {
-        this.addWinnerPoint();
-        this.gameScoreFedererRow.add(toTennisScore(this.federerScore));
-        this.gameScoreNadalRow.add(toTennisScore(this.nadalScore));
-        this.gameScoreWinnerRow.add("");
-    }
-
-    private void addWinnerPoint() {
         this.gameScoreHeader.add(this.winner + " wins 1 point");
+        this.gameScorePlayerOneRow.add("0");
+        this.gameScorePlayerTwoRow.add("0");
+        this.gameScoreWinnerRow.add(this.winner + " wins the game");
     }
 
     String toTennisScore(int score) {
@@ -63,15 +69,15 @@ class TennisGameScore {
         return "0";
     }
 
-     void displayGameScore() {
+    void displayGameScoreTable() {
         System.out.println("Game score");
 
         TennisGameTable tennisGameTable = new TennisGameTable();
 
         tennisGameTable.setShowVerticalLines(true);
         tennisGameTable.setHeaders(toArrayString(this.gameScoreHeader));
-        tennisGameTable.addRow(toArrayString(this.gameScoreFedererRow));
-        tennisGameTable.addRow(toArrayString(this.gameScoreNadalRow));
+        tennisGameTable.addRow(toArrayString(this.gameScorePlayerOneRow));
+        tennisGameTable.addRow(toArrayString(this.gameScorePlayerTwoRow));
         tennisGameTable.addRow(toArrayString(this.gameScoreWinnerRow));
 
         tennisGameTable.print();
@@ -81,38 +87,28 @@ class TennisGameScore {
         return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
     }
 
-    void addPointFederer() {
-        this.federerScore += 1;
-        this.winner = "Federer";
-    }
-
-    void addPointNadal() {
-        this.nadalScore += 1;
-        this.winner = "Nadal";
-    }
-
     boolean isOver() {
-        return this.federerScore == 4 || this.nadalScore == 4;
+        return this.playerOneScore == 4 || this.playerTwoScore == 4;
     }
 
     boolean isNotOver() {
         return (! isOver());
     }
 
-    int getFedererScore() {
-        return federerScore;
+    int getPlayerOneScore() {
+        return playerOneScore;
     }
 
-    void setFedererScore(int federerScore) {
-        this.federerScore = federerScore;
+    void setPlayerOneScore(int playerOneScore) {
+        this.playerOneScore = playerOneScore;
     }
 
-    int getNadalScore() {
-        return nadalScore;
+    int getPlayerTwoScore() {
+        return playerTwoScore;
     }
 
-    void setNadalScore(int nadalScore) {
-        this.nadalScore = nadalScore;
+    void setPlayerTwoScore(int playerTwoScore) {
+        this.playerTwoScore = playerTwoScore;
     }
 
     String getWinner() {
@@ -123,12 +119,12 @@ class TennisGameScore {
         return gameScoreHeader;
     }
 
-    ArrayList<String> getGameScoreFedererRow() {
-        return gameScoreFedererRow;
+    ArrayList<String> getGameScorePlayerOneRow() {
+        return gameScorePlayerOneRow;
     }
 
-    ArrayList<String> getGameScoreNadalRow() {
-        return gameScoreNadalRow;
+    ArrayList<String> getGameScorePlayerTwoRow() {
+        return gameScorePlayerTwoRow;
     }
 
     ArrayList<String> getGameScoreWinnerRow() {

@@ -6,15 +6,15 @@ class TennisReferee {
         this.tennisGameScore = new TennisGameScore();
     }
 
-    void addPointPlayer(int playResult) {
-        if (isFedererWinPoint(playResult)) {
-            this.tennisGameScore.addPointFederer();
+    void addPointPlayer(int winnerPoint) {
+        if (isPlayerOneWinPoint(winnerPoint)) {
+            this.tennisGameScore.addPointPlayerOne();
         } else {
-            this.tennisGameScore.addPointNadal();
+            this.tennisGameScore.addPointPlayerTwo();
         }
     }
 
-    void updateGameScore() {
+    void updateGameScoreTable() {
         if (hasAnnouncedTennisGameIsOver()) {
             this.tennisGameScore.addGameOverCol();
         } else {
@@ -22,20 +22,20 @@ class TennisReferee {
         }
     }
 
-    void displayGameScore() {
-        this.tennisGameScore.displayGameScore();
+    void displayGameScoreTable() {
+        this.tennisGameScore.displayGameScoreTable();
+    }
+
+    boolean isPlayerOneWinPoint(int winnerPoint) {
+        return winnerPoint % 2 != 0;
     }
 
     boolean hasAnnouncedTennisGameIsOver() {
         return this.tennisGameScore.isOver();
     }
 
-    boolean hasNotAnnoucedTennisGameIsOver() {
+    boolean hasNotAnnouncedTennisGameIsOver() {
         return this.tennisGameScore.isNotOver();
-    }
-
-    boolean isFedererWinPoint(int randResult) {
-        return randResult % 2 == 0;
     }
 
 }
