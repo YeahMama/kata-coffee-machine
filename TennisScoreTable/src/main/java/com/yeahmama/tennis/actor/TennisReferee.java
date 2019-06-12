@@ -1,33 +1,26 @@
 package com.yeahmama.tennis.actor;
 
-import com.yeahmama.tennis.score.TennisGameScore;
+import com.yeahmama.tennis.score.TennisScore;
 
 public class TennisReferee {
 
-    private TennisGameScore tennisGameScore;
+    private TennisScore tennisScore;
 
     public TennisReferee() {
-        this.tennisGameScore = new TennisGameScore();
+        this.tennisScore = new TennisScore();
     }
 
-    public void addPointPlayer(int winnerPoint) {
+    public void updatePlayerPoints(int winnerPoint) {
         if (isPlayerOneWinPoint(winnerPoint)) {
-            this.tennisGameScore.addPointPlayerOne();
+            this.tennisScore.addPointPlayerOne();
+
         } else {
-            this.tennisGameScore.addPointPlayerTwo();
+            this.tennisScore.addPointPlayerTwo();
         }
     }
 
-    public void updateGameScoreTable() {
-        if (hasAnnouncedTennisGameIsOver()) {
-            this.tennisGameScore.addGameOverCol();
-        } else {
-            this.tennisGameScore.addPointCol();
-        }
-    }
-
-    public void displayGameScoreTable() {
-        this.tennisGameScore.display();
+    public void displayGameScore() {
+        this.tennisScore.displayScoreTable();
     }
 
     boolean isPlayerOneWinPoint(int winnerPoint) {
@@ -35,11 +28,11 @@ public class TennisReferee {
     }
 
     boolean hasAnnouncedTennisGameIsOver() {
-        return this.tennisGameScore.isOver();
+        return this.tennisScore.isOver();
     }
 
     public boolean hasNotAnnouncedTennisGameIsOver() {
-        return this.tennisGameScore.isNotOver();
+        return this.tennisScore.isNotOver();
     }
 
 }

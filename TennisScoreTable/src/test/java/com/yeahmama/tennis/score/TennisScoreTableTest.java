@@ -13,7 +13,7 @@ import java.io.PrintStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TennisGameScoreTest {
+public class TennisScoreTableTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -21,7 +21,7 @@ public class TennisGameScoreTest {
     private final PrintStream originalErr = System.err;
 
     @InjectMocks
-    private TennisGameScore tennisGameScore;
+    private TennisScoreTable tennisScoreTable;
 
     @Before
     public void setUp() {
@@ -29,106 +29,38 @@ public class TennisGameScoreTest {
         System.setErr(new PrintStream(errContent));
     }
 
-    @Test
-    public void should_game_over_when_player_one_wins_the_game() {
+    public void should_add_game_over_column_to_game_score_table_when_a_player_wins_4_points() {
         // Arrange
-        tennisGameScore.setPlayerOneScore(4);
+        tennisScoreTable.addPointCol("Player 1", 1, 0);
+        tennisScoreTable.addPointCol("Player 1", 2, 0);
+        tennisScoreTable.addPointCol("Player 1", 3, 0);
 
         // Act
-        boolean tennisGameOver = tennisGameScore.isOver();
+        tennisScoreTable.addGameOverCol("Player 1");
 
         // Assert
-        assertThat(tennisGameOver).isTrue();
-    }
-
-    @Test
-    public void should_game_over_when_player_two_wins_the_game() {
-        // Arrange
-        tennisGameScore.setPlayerTwoScore(4);
-
-        // Act
-        boolean tennisGameOver = tennisGameScore.isOver();
-
-        // Assert
-        assertThat(tennisGameOver).isTrue();
-    }
-
-    @Test
-    public void should_not_game_over_when_no_one_wins() {
-        // Arrange
-        tennisGameScore.setPlayerOneScore(2);
-        tennisGameScore.setPlayerTwoScore(2);
-
-        // Act
-        boolean tennisGameNotOver = tennisGameScore.isNotOver();
-
-        // Assert
-        assertThat(tennisGameNotOver).isTrue();
-    }
-
-    @Test
-    public void should_add_point_to_player_one_when_he_wins_point() {
-        // Act
-        tennisGameScore.addPointPlayerOne();
-
-        // Assert
-        assertThat(tennisGameScore.getPlayerOneScore()).isEqualTo(1);
-        assertThat(tennisGameScore.getWinner()).isEqualTo("Player 1");
-    }
-
-    @Test
-    public void should_add_point_to_player_two_when_he_wins_point() {
-        // Act
-        tennisGameScore.addPointPlayerTwo();
-
-        // Assert
-        assertThat(tennisGameScore.getPlayerTwoScore()).isEqualTo(1);
-        assertThat(tennisGameScore.getWinner()).isEqualTo("Player 2");
-    }
-
-    @Test
-    public void should_add_game_over_column_to_game_score_table_when_it_has_a_game_winner() {
-        // Arrange
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addPointCol();
-
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addPointCol();
-
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addPointCol();
-
-        tennisGameScore.addPointPlayerOne();
-
-        // Act
-        tennisGameScore.addGameOverCol();
-
-        // Assert
-        assertThat(tennisGameScore.getGameScoreHeader().get(5)).isEqualTo("Player 1 wins 1 point");
-        assertThat(tennisGameScore.getGameScorePlayerOneRow().get(5)).isEqualTo("0");
-        assertThat(tennisGameScore.getGameScorePlayerTwoRow().get(5)).isEqualTo("0");
-        assertThat(tennisGameScore.getGameScoreWinnerRow().get(5)).isEqualTo("Player 1 wins the game");
+        assertThat(tennisScoreTable.getGameScoreHeader().get(4)).isEqualTo("Player 1 wins 1 point");
+        assertThat(tennisScoreTable.getGameScorePlayerOneRow().get(4)).isEqualTo("0");
+        assertThat(tennisScoreTable.getGameScorePlayerTwoRow().get(4)).isEqualTo("0");
+        assertThat(tennisScoreTable.getGameScoreWinnerRow().get(4)).isEqualTo("Player 1 wins the game");
     }
 
     @Test
     public void should_add_point_column_to_game_score_table_when_it_has_a_point_winner() {
-        // Arrange
-        tennisGameScore.addPointPlayerOne();
-
         // Act
-        tennisGameScore.addPointCol();
+        tennisScoreTable.addPointCol("Player 1", 1, 0);
 
         // Assert
-        assertThat(tennisGameScore.getGameScoreHeader().get(2)).isEqualTo("Player 1 wins 1 point");
-        assertThat(tennisGameScore.getGameScorePlayerOneRow().get(2)).isEqualTo("15");
-        assertThat(tennisGameScore.getGameScorePlayerTwoRow().get(2)).isEqualTo("0");
-        assertThat(tennisGameScore.getGameScoreWinnerRow().get(2)).isEqualTo("");
+        assertThat(tennisScoreTable.getGameScoreHeader().get(2)).isEqualTo("Player 1 wins 1 point");
+        assertThat(tennisScoreTable.getGameScorePlayerOneRow().get(2)).isEqualTo("15");
+        assertThat(tennisScoreTable.getGameScorePlayerTwoRow().get(2)).isEqualTo("0");
+        assertThat(tennisScoreTable.getGameScoreWinnerRow().get(2)).isEqualTo("");
     }
 
     @Test
     public void should_have_tennis_game_score_table_initialized() {
         // Act
-        tennisGameScore.display();
+        tennisScoreTable.display();
 
         // Assert
         assertThat(displayGameScoreTableInit()).isEqualTo(outContent.toString());
@@ -148,11 +80,10 @@ public class TennisGameScoreTest {
     @Test
     public void should_have_tennis_game_score_table_with_one_point_column_when_adding_one_point() {
         // Arrange
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addPointCol();
+        tennisScoreTable.addPointCol("Player 1", 1, 0);
 
         // Act
-        tennisGameScore.display();
+        tennisScoreTable.display();
 
         // Assert
         assertThat(displayGameScoreTableWithOnePoint()).isEqualTo(outContent.toString());
@@ -172,20 +103,13 @@ public class TennisGameScoreTest {
     @Test
     public void should_have_final_tennis_game_score_table_when_adding_game_over_column() {
         // Arrange
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addPointCol();
-
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addPointCol();
-
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addPointCol();
-
-        tennisGameScore.addPointPlayerOne();
-        tennisGameScore.addGameOverCol();
+        tennisScoreTable.addPointCol("Player 1", 1, 0);
+        tennisScoreTable.addPointCol("Player 1", 2, 0);
+        tennisScoreTable.addPointCol("Player 1", 3, 0);
+        tennisScoreTable.addGameOverCol("Player 1");
 
         // Act
-        tennisGameScore.display();
+        tennisScoreTable.display();
 
         // Assert
         assertThat(displayFinalGameScoreTable()).isEqualTo(outContent.toString());

@@ -1,6 +1,6 @@
 package com.yeahmama.tennis.actor;
 
-import com.yeahmama.tennis.score.TennisGameScore;
+import com.yeahmama.tennis.score.TennisScore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,7 +20,7 @@ public class TennisRefereeTest {
     private TennisReferee tennisReferee;
 
     @Mock
-    private TennisGameScore tennisGameScore;
+    private TennisScore tennisScore;
 
     @Test
     public void should_player_one_wins_one_point_when_it_has_an_odd_number() {
@@ -43,60 +43,36 @@ public class TennisRefereeTest {
     @Test
     public void should_add_point_to_player_one_when_he_is_winner_point() {
         // Arrange
-        doNothing().when(tennisGameScore).addPointPlayerOne();
-        when(tennisGameScore.getPlayerOneScore()).thenReturn(1);
+        doNothing().when(tennisScore).addPointPlayerOne();
+        when(tennisScore.getPlayerOneScore()).thenReturn(1);
 
         // Act
-        tennisReferee.addPointPlayer(PLAYER_ONE);
+        tennisReferee.updatePlayerPoints(PLAYER_ONE);
 
         // Assert
-        assertThat(tennisGameScore.getPlayerOneScore()).isEqualTo(1);
+        assertThat(tennisScore.getPlayerOneScore()).isEqualTo(1);
     }
 
     @Test
     public void should_add_point_to_player_two_when_he_is_winner_point() {
         // Arrange
-        doNothing().when(tennisGameScore).addPointPlayerTwo();
-        when(tennisGameScore.getPlayerTwoScore()).thenReturn(1);
+        doNothing().when(tennisScore).addPointPlayerTwo();
+        when(tennisScore.getPlayerTwoScore()).thenReturn(1);
 
         // Act
-        tennisReferee.addPointPlayer(PLAYER_TWO);
+        tennisReferee.updatePlayerPoints(PLAYER_TWO);
 
         // Assert
-        assertThat(tennisGameScore.getPlayerTwoScore()).isEqualTo(1);
-    }
-
-    @Test
-    public void should_add_game_over_column_to_game_score_table_when_tennis_game_is_over() {
-        // Arrange
-        when(tennisGameScore.isOver()).thenReturn(true);
-
-        // Act
-        tennisReferee.updateGameScoreTable();
-
-        // Assert
-        verify(tennisGameScore, times(1)).addGameOverCol();
-    }
-
-    @Test
-    public void should_add_point_column_to_game_score_table_when_a_player_wins_a_point() {
-        // Arrange
-        when(tennisGameScore.isOver()).thenReturn(false);
-
-        // Act
-        tennisReferee.updateGameScoreTable();
-
-        // Assert
-        verify(tennisGameScore, times(1)).addPointCol();
+        assertThat(tennisScore.getPlayerTwoScore()).isEqualTo(1);
     }
 
     @Test
     public void should_display_game_score_only_once() {
         // Act
-        tennisReferee.displayGameScoreTable();
+        tennisReferee.displayGameScore();
 
         // Assert
-        verify(tennisGameScore, times(1)).display();
+        verify(tennisScore, times(1)).displayScoreTable();
     }
 
     @Test
@@ -105,7 +81,7 @@ public class TennisRefereeTest {
         tennisReferee.hasAnnouncedTennisGameIsOver();
 
         // Assert
-        verify(tennisGameScore, times(1)).isOver();
+        verify(tennisScore, times(1)).isOver();
     }
 
     @Test
@@ -114,7 +90,7 @@ public class TennisRefereeTest {
         tennisReferee.hasNotAnnouncedTennisGameIsOver();
 
         // Assert
-        verify(tennisGameScore, times(1)).isNotOver();
+        verify(tennisScore, times(1)).isNotOver();
 
     }
 

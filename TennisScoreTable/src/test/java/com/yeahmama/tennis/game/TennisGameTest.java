@@ -1,4 +1,4 @@
-package com.yeahmama.tennis;
+package com.yeahmama.tennis.game;
 
 import com.yeahmama.tennis.actor.TennisPlayer;
 import com.yeahmama.tennis.actor.TennisReferee;
@@ -31,7 +31,7 @@ public class TennisGameTest {
     public void should_stop_tennis_game_when_referee_announce_the_end_of_tennis_game() {
         // Arrange
         when(tennisReferee.hasNotAnnouncedTennisGameIsOver()).thenReturn(false);
-        doNothing().when(tennisReferee).displayGameScoreTable();
+        doNothing().when(tennisReferee).displayGameScore();
 
         // Act
         tennisGame.play();

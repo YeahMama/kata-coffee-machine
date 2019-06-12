@@ -8,7 +8,7 @@ import java.util.List;
 /***
  * Class from https://www.logicbig.com/how-to/code-snippets/jcode-java-cmd-command-line-table.html
  */
-public class TennisGameTable {
+public class TennisScoreTableBuilder {
 
     private static final String HORIZONTAL_SEP = "-";
 
@@ -18,7 +18,7 @@ public class TennisGameTable {
     private List<String[]> rows = new ArrayList<>();
     private boolean rightAlign;
 
-    public TennisGameTable() {
+    TennisScoreTableBuilder() {
         setShowVerticalLines(false);
     }
 
@@ -26,20 +26,20 @@ public class TennisGameTable {
         this.rightAlign = rightAlign;
     }
 
-    public void setShowVerticalLines(boolean showVerticalLines) {
+    void setShowVerticalLines(boolean showVerticalLines) {
         verticalSep = showVerticalLines ? "|" : "";
         joinSep = showVerticalLines ? "+" : " ";
     }
 
-    public void setHeaders(String... headers) {
+    void setHeaders(String... headers) {
         this.headers = headers;
     }
 
-    public void addRow(String... cells) {
+    void addRow(String... cells) {
         rows.add(cells);
     }
 
-    public void print() {
+    void print() {
         int[] maxWidths = headers != null ?
                 Arrays.stream(headers).mapToInt(String::length).toArray() : null;
 

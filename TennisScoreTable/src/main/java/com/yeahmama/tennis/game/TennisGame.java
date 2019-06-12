@@ -1,4 +1,4 @@
-package com.yeahmama.tennis;
+package com.yeahmama.tennis.game;
 
 import com.yeahmama.tennis.actor.TennisPlayer;
 import com.yeahmama.tennis.actor.TennisReferee;
@@ -13,7 +13,7 @@ public class TennisGame {
     private TennisPlayer tennisPlayerOne;
     private TennisPlayer tennisPlayerTwo;
 
-    TennisGame() {
+    public TennisGame() {
         this.tennisReferee = new TennisReferee();
 
         this.tennisPlayerOne = new TennisPlayer();
@@ -22,16 +22,13 @@ public class TennisGame {
 
     public void play() {
         while (this.tennisReferee.hasNotAnnouncedTennisGameIsOver()) {
-            int winnerPoint = winnerPoint();
-
-            this.tennisReferee.addPointPlayer(winnerPoint);
-            this.tennisReferee.updateGameScoreTable();
+            this.tennisReferee.updatePlayerPoints(winnerPoint());
         }
 
-        this.tennisReferee.displayGameScoreTable();
+        this.tennisReferee.displayGameScore();
     }
 
-    public int winnerPoint() {
+    int winnerPoint() {
         int tennisPlayerOneHit = -1;
         int tennisPlayerTwoHit = -1;
 
