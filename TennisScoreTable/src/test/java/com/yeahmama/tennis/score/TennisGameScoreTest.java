@@ -9,9 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
-import static com.yeahmama.tennis.utils.ArrayListUtils.toArrayString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -128,13 +126,33 @@ public class TennisGameScoreTest {
     }
 
     @Test
+    public void should_have_tennis_game_score_table_initialized() {
+        // Act
+        tennisGameScore.display();
+
+        // Assert
+        assertThat(displayGameScoreTableInit()).isEqualTo(outContent.toString());
+    }
+
+    private String displayGameScoreTableInit() {
+        return "Game score\n" +
+                "+----------+----------------+\n" +
+                "|          | Start the game |\n" +
+                "+----------+----------------+\n" +
+                "| Player 1 | 0              |\n" +
+                "| Player 2 | 0              |\n" +
+                "|          |                |\n" +
+                "+----------+----------------+\n";
+    }
+
+    @Test
     public void should_have_tennis_game_score_table_with_one_point_column_when_adding_one_point() {
         // Arrange
         tennisGameScore.addPointPlayerOne();
         tennisGameScore.addPointCol();
 
         // Act
-        tennisGameScore.displayGameScoreTable();
+        tennisGameScore.display();
 
         // Assert
         assertThat(displayGameScoreTableWithOnePoint()).isEqualTo(outContent.toString());
@@ -167,7 +185,7 @@ public class TennisGameScoreTest {
         tennisGameScore.addGameOverCol();
 
         // Act
-        tennisGameScore.displayGameScoreTable();
+        tennisGameScore.display();
 
         // Assert
         assertThat(displayFinalGameScoreTable()).isEqualTo(outContent.toString());

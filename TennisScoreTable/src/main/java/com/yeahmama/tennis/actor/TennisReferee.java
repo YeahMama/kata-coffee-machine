@@ -27,14 +27,14 @@ public class TennisReferee {
     }
 
     public void displayGameScoreTable() {
-        this.tennisGameScore.displayGameScoreTable();
+        this.tennisGameScore.display();
     }
 
-    public boolean isPlayerOneWinPoint(int winnerPoint) {
+    boolean isPlayerOneWinPoint(int winnerPoint) {
         return winnerPoint % 2 != 0;
     }
 
-    public boolean hasAnnouncedTennisGameIsOver() {
+    boolean hasAnnouncedTennisGameIsOver() {
         return this.tennisGameScore.isOver();
     }
 

@@ -26,6 +26,10 @@ public class TennisGameScore {
         this.gameScorePlayerTwoRow = new ArrayList<>();
         this.gameScoreWinnerRow = new ArrayList<>();
 
+        init();
+    }
+
+    private void init() {
         this.gameScoreHeader.add("");
         this.gameScoreHeader.add("Start the game");
 
@@ -63,7 +67,7 @@ public class TennisGameScore {
         this.gameScoreWinnerRow.add(this.winner + " wins the game");
     }
 
-    public void displayGameScoreTable() {
+    public void display() {
         System.out.println("Game score");
 
         TennisGameTable tennisGameTable = new TennisGameTable();
@@ -76,7 +80,6 @@ public class TennisGameScore {
 
         tennisGameTable.print();
     }
-
 
     public boolean isOver() {
         return this.playerOneScore == 4 || this.playerTwoScore == 4;

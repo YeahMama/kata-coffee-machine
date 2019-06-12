@@ -96,7 +96,7 @@ public class TennisRefereeTest {
         tennisReferee.displayGameScoreTable();
 
         // Assert
-        verify(tennisGameScore, times(1)).displayGameScoreTable();
+        verify(tennisGameScore, times(1)).display();
     }
 
     @Test
