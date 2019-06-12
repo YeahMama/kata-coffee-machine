@@ -1,8 +1,8 @@
 package com.yeahmama.tennis.score;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import static com.yeahmama.tennis.utils.ArrayListUtils.toArrayString;
 import static com.yeahmama.tennis.utils.TennisUtils.toTennisScore;
 
 public class TennisGameScore {
@@ -77,9 +77,6 @@ public class TennisGameScore {
         tennisGameTable.print();
     }
 
-    String[] toArrayString(ArrayList<String> arrayList) {
-        return Arrays.copyOf(arrayList.toArray(), arrayList.toArray().length, String[].class);
-    }
 
     public boolean isOver() {
         return this.playerOneScore == 4 || this.playerTwoScore == 4;

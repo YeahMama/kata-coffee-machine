@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import static com.yeahmama.tennis.utils.ArrayListUtils.toArrayString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -124,19 +125,6 @@ public class TennisGameScoreTest {
         assertThat(tennisGameScore.getGameScorePlayerOneRow().get(2)).isEqualTo("15");
         assertThat(tennisGameScore.getGameScorePlayerTwoRow().get(2)).isEqualTo("0");
         assertThat(tennisGameScore.getGameScoreWinnerRow().get(2)).isEqualTo("");
-    }
-
-    @Test
-    public void should_convert_array_list_to_array_string() {
-        // Arrange
-        ArrayList<String> arrayListString = new ArrayList<>();
-        arrayListString.add("Something");
-
-        // Act
-        String[] arrayString = tennisGameScore.toArrayString(arrayListString);
-
-        // Assert
-        assertThat(arrayListString.get(0)).isEqualTo(arrayString[0]);
     }
 
     @Test
