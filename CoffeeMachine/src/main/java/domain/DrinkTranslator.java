@@ -1,6 +1,10 @@
+package domain;
+
+import org.apache.commons.lang3.StringUtils;
+
 class DrinkTranslator {
-    private final static String STICK_CODE = "0";
-    private final static String MESSAGE_CODE = "M";
+    private static final String STICK_CODE = "0";
+    private static final String MESSAGE_CODE = "M";
 
     String toDrinkMaker(Drink drink, int nbOfSugars) {
         return drink.getCode()
@@ -13,22 +17,22 @@ class DrinkTranslator {
     }
 
     private String sugarCode(int nbOfSugars) {
-        return hasSugars(nbOfSugars)? String.valueOf(nbOfSugars) : "";
+        return hasSugars(nbOfSugars) ? String.valueOf(nbOfSugars) : StringUtils.EMPTY;
     }
 
     private String stickCode(int nbOfSugars) {
-        return hasSugars(nbOfSugars)? STICK_CODE : "";
+        return hasSugars(nbOfSugars) ? STICK_CODE : StringUtils.EMPTY;
     }
 
 
     String toCustomer(String instructionsFromDrinkMaker) {
         String[] instructions = instructionsFromDrinkMaker.split(":");
 
-        if(isMessageInstruction(instructions[0])) {
+        if (isMessageInstruction(instructions[0])) {
             return displayMessage(instructions[1]);
         }
 
-        return "";
+        return StringUtils.EMPTY;
     }
 
     private boolean isMessageInstruction(String instructionCode) {

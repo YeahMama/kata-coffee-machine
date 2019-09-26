@@ -1,3 +1,5 @@
+package domain;
+
 class DrinkOrder {
 
     private DrinkTranslator drinkTranslator;
@@ -7,7 +9,7 @@ class DrinkOrder {
     }
 
     String makeDrink(Drink drink, int nbOfSugars, double amount) {
-        if(hasEnoughMoneyGiven(drink, amount)) {
+        if (hasEnoughMoneyGiven(drink, amount)) {
             return drinkTranslator.toDrinkMaker(drink, nbOfSugars);
         }
 
@@ -19,6 +21,6 @@ class DrinkOrder {
     }
 
     private String notEnoughtMoneyGivenMessage(Drink drink, double amount) {
-        return "Need " + String.valueOf(drink.getPrice() - amount);
+        return "Need " + (drink.getPrice() - amount);
     }
 }
