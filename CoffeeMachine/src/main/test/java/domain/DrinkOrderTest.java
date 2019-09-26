@@ -17,13 +17,30 @@ public class DrinkOrderTest {
 
     @Test
     public void should_make_drink_when_enough_money_is_given() {
-        assertThat(drinkOrder.makeDrink(Drink.TEA, 2, 0.4)).contains(Drink.TEA.getCode() + ":2:0");
+        // Arrange
+        Drink tea = Drink.TEA;
+        int nbOfSugars = 2;
+        double amount = 0.4;
+
+        // Act
+        String drink = drinkOrder.makeDrink(tea, nbOfSugars, amount);
+
+        // Assert
+        assertThat(drink).contains("Th:2:0");
     }
 
     @Test
     public void should_not_make_drink_when_not_enough_money_is_given() {
-        drinkOrder = new DrinkOrder();
-        assertThat(drinkOrder.makeDrink(Drink.COFFEE, 0, 0.2)).contains("Need " + (Drink.COFFEE.getPrice() - 0.2));
+        // Arrange
+        Drink coffee = Drink.COFFEE;
+        int nbOfSugars = 0;
+        double amount = 0.2;
+
+        // Act
+        String drink = drinkOrder.makeDrink(coffee, nbOfSugars, amount);
+
+        // Assert
+        assertThat(drink).contains("Need " + (Drink.COFFEE.getPrice() - 0.2));
     }
 
     @After
