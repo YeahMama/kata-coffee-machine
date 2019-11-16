@@ -1,4 +1,4 @@
-package domain;
+package com.yeahmama.kata.coffeemachine.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
